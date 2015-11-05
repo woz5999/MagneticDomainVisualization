@@ -1,6 +1,6 @@
-#[Magnetix Particle Visualization](http://http://52.27.90.205/MagneticDomainVisualization.html)
+#[Magnetic Domain Visualization](http://http://52.27.90.205/MagneticDomainVisualization.html)
 
-This is a project I created for a colleague working in education. 
+This is a project I created for a colleague working in education.
 
 The visualization is designed to illustrate to students the behavior of ferromagnetic
 materials at the nano scale. It utilizes pure javascript and HTML5 to dynamically draw
