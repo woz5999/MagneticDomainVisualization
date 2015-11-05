@@ -1,0 +1,125 @@
+@import './grid';
+@import './utils/mixins';
+
+$black: #000;
+$white: #fff;
+
+$default-font: 14px;
+$heading-font: 18px;
+$title-font: 24px;
+
+$body-background-color: #87c3e7;
+$button-background-color: $white;
+$button-disabled-background-color: #eee;
+$button-disabled-color: #aaa;
+$button-hover-background-color: #eee;
+$error-background-color: #555;
+$error-text-color: #f22;
+$corner-radius: 4px;
+
+///////////////////////ELEMENTS////////////////
+canvas {
+  background-color: $white;
+  border: 1px solid $black;
+  margin-bottom: 14px;
+  margin-top: 14px;
+  max-height: 50vh;
+  width: 100%;
+  }
+
+body {
+  background-color: $body-background-color;
+  // background-image: url('./particlebackground.jpg');
+  font-family: sans-serif;
+  font-size: $default-font;
+  text-align: center;
+}
+
+h1 a {
+  color: $black;
+  text-decoration: none;
+  }
+
+///////////////////////LAYOUT////////////////
+.center {
+  float: none;
+  margin: 0 auto;
+}
+
+.text-center {
+  text-align: center;
+  }
+
+.text-left {
+  text-align: left;
+  }
+
+.text-right {
+  text-align: right;
+    }
+
+.spacer {
+  min-height: 16px;
+}
+
+.no-top-margin {
+  margin-top: 0;
+}
+
+.main {
+  margin-left: auto;
+  margin-right: auto;
+  }
+
+/////////////////////BUTTONS////////////////
+button {
+  @include border-radius($corner-radius);
+  background-color: $button-background-color;
+  border: 0;
+  font-size: $default-font;
+  height: 40px;
+  margin: 8px;
+  width: 100px;
+
+  &:hover {
+    background-color: $button-hover-background-color;
+    }
+
+  &.disabled {
+    background-color: $button-disabled-background-color;
+    color: $button-disabled-color;
+  }
+
+  &:focus {
+    outline: 0;
+  }
+}
+
+.button-row {
+  margin-top: 14px;
+}
+
+///////////////////////ERROR////////////////
+.error-div {
+  background-color: $error-background-color;
+  color: $error-text-color;
+  display: none;
+}
+
+///////////////////////TEXT////////////////
+.instructions {
+  @include border-radius($corner-radius);
+  background-color: $white;
+  padding: 8px;
+}
+
+.heading {
+  font-size: $heading-font;
+  font-weight: bold;
+  margin: 8px;
+}
+
+.title {
+  font-size: $title-font;
+  font-weight: bold;
+}

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Magnetic Domain Visualization</title>
+    <link rel="stylesheet" href="./css/main.css">
+</head>
+
+<body>
+	<div class="grid-container center">
+		<div id="dError" class="error-div">
+		</div>
+		<div id="title" class="title row">
+			Magnetic Domain Visualization
+		</div>
+		<div id="dMain" class="main">
+			<div class="row">
+				<div class="col-12 text-center">
+					<canvas id="particleCanvas" class="canvas" width="983" height="611">
+						Please use an HTML5 compatible browser to view this simulation
+					</canvas>
+				</div>
+			</div>
+			<div id="dLowerLabels" class="row">
+				<div id="controls" class="row">
+					<div class="col-4 col-sm-2">
+						<div class="row text-center">
+							<span id="rnSizeValue"></span> atoms
+						</div>
+						<div class="row">
+							<div class="row">
+								<input type="range" id="rnSize" min="25" max="4800" step="25">
+							</div>
+							<div class="row">
+								Domain Size
+							</div>
+						</div>
+					</div>
+					<div class="col-4 col-sm-2">
+						<div class="row text-center">
+							<span id="rnStrengthValue"></span>%
+						</div>
+						<div class="row">
+							<div class="row">
+								<input type="range" id="rnStrength" min="0" max="100" step="5">
+							</div>
+							<div class="row">
+								Applied Field Strength
+							</div>
+						</div>
+					</div>
+					<div class="col-4 col-sm-2">
+						<div class="row text-center">
+							 <span id="rnTempValue"></span>K
+						</div>
+						<div class="row">
+							<div class="row">
+								<input type="range" id="rnTemp" min="0" max="1100" step="10">
+							</div>
+							<div class="row">
+								Temperature
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="buttons" class="row button-row">
+					<div class="col-4 col-sm-2">
+						<button id="btnMagnet" type="button" title="Toggle the applied field">
+							Applied Field <!--On / Off-->
+						</button>
+					</div>
+					<div class="col-4 col-sm-2">
+						<button id="btnPolarity" type="button" title="Flip the field's polarity">
+							Polarity
+							<span style="font-size: 20px">
+								&#x2194;
+							</span>
+						</button>
+					</div>
+					<div class="col-4 col-sm-2">
+						<button id="btnPause" type="button" title="Pause the visualization">
+							Pause
+						</button>
+					</div>
+				</div>
+				<div id="instructions" class="row instructions">
+					<div class="row heading text-center">
+						Description
+					</div>
+					<div class="description row">
+						<div class="col-12  text-left">
+							<p class="no-top-margin">
+								Magnetism is a size dependent property.  At the macroscale, ferromagnetic
+								materials exhibit remanance – when magnetized, they can stay magnetized.
+							</p>
+							<p>
+								At the nanoscale, ferromagnetic materials behave paramagnetically.
+								They are magnetized in an applied field, but when the field is removed, they
+								spontaneously de-magnetize.  This simulation allows students to investigate
+								the effects of particle size, applied field, temperature and the probability of a
+								ferromagnetic particle staying magnetized.
+							</p>
+							<p>
+								<a href="https://web.ics.purdue.edu/~dsederbe/wp-content/uploads/2011/07/Domain-Simulation-Lesson.pdf"
+									target="_new">
+									The full lesson plan can be accessed here.
+								</a>
+							</p>
+						</div>
+					</div>
+					<div class="row text-left">
+						<div class="row">
+							<div class="row heading text-center">
+								Legend
+							</div>
+							<div class="row">
+								<div class="col-12">
+									<b>Arrows</b> – the magnetic orientation (magnetic moment) of an
+									individual atom
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-12">
+									<b>Shading</b> – indicates probability that the magnetic moment will flip
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row spacer"></div>
+					<div class="row text-left">
+						<div class="row">
+							<div class="col-7">
+								<b>Domain size</b> – the size of the particle
+							</div>
+							<div class="col-5">
+								Controlled by the slider or keys A / S
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-7">
+								<b>Applied field</b> – strength of the field applied to the particle
+							</div>
+							<div class="col-5">
+								Controlled by the slider or keys G / H
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-7">
+								<b>Temperature</b> – thermal energy of the domain
+							</div>
+							<div class="col-5">
+								Controlled by the slider or keys K / L
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+    <script src="js/bundle.js"></script>
+	<!-- <script src="js/bundle.min.js"></script> -->
+</body>
+</html>

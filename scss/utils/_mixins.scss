@@ -1,0 +1,53 @@
+@mixin transition-ease-out($time) {
+  -webkit-transition: -webkit-transform $time ease-out;
+  -o-transition: -o-transform $time ease-out;
+  transition: transform $time ease-out;
+}
+
+@mixin transition-property($transition) {
+  @if $transition == transform {
+	  transition-property: -moz-transform;
+	  transition-property: -o-transform;
+	  transition-property: -webkit-transform;
+	  transition-property: transform;
+  }
+}
+
+@mixin transform-translate($x, $y, $z: false) {
+  @if $z {
+  -ms-transform: translate3d($x, $y, $z);
+   -o-transform: translate3d($x, $y, $z);
+  -webkit-transform: translate3d($x, $y, $z);
+  transform: translate3d($x, $y, $z);
+  } @else {
+  -ms-transform: translate($x, $y);
+   -o-transform: translate($x, $y);
+  -webkit-transform: translate($x, $y);
+  transform: translate($x, $y);
+  }
+}
+
+@mixin box-shadow($h, $v, $blur, $color) {
+  -webkit-box-shadow: $h, $v, $blur, $color;
+  -moz-box-shadow: $h, $v, $blur, $color;
+  box-shadow: $h, $v, $blur, $color;
+}
+
+@mixin border-radius($a, $b :false, $c:false, $d:false) {
+  @if $b == false and $c == false and $d == false {
+	-moz-border-radius: $a;
+  	-webkit-border-radius: $a;
+	border-radius: $a;
+  } @else {
+	-moz-border-radius: $a $b $c $d;
+	-webkit-border-radius: $a $b $c $d;
+	border-radius: $a $b $c $d;
+  }
+}
+
+@mixin whitespace() {
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+}
