@@ -3,7 +3,7 @@ var Global = require("../config/global");
 var InterfaceUpdates = require("../interface/interface-updates");
 
 var CanvasSetup = {
-    //function to construct the canvas and assing variables based on its parameters {
+    //function to construct canvas and assign variables based on its parameters
     setupCanvas: function() {
         var cCanvas = document.getElementById('particleCanvas');
 

@@ -13,11 +13,14 @@ var Draw = {
         //check if the visualization is turned on
         if(Global.bOn) {
             //clear the canvas
-            Global.ctxContext.clearRect(0, 0, Global.iCanvasWidth, Global.iCanvasHeight);
+            Global.ctxContext.clearRect(0, 0,
+                Global.iCanvasWidth, Global.iCanvasHeight);
 
             //determine if the canvas dimensions have changed
-            if(Global.iCanvasHeight != document.getElementById('particleCanvas').height ||
-                Global.iCanvasWidth != document.getElementById('particleCanvas').width) {
+            if(Global.iCanvasHeight !=
+                document.getElementById('particleCanvas').height ||
+                Global.iCanvasWidth !=
+                document.getElementById('particleCanvas').width) {
 
                 //reset canvas variables
                 CanvasSetup.setCanvasVariables();

@@ -5,9 +5,9 @@ var Global = require("../config/global");
 
 particle =function(x, y, iInitialRotation) {
     this.iRotation = iInitialRotation;
-    this.iMagneticActivity =
-        (Math.abs(Global.iParticleCenterX - x) +
-            Math.abs(Global.iParticleCenterY - y)) / (Global.iSize * Config.iParticleRadius);
+    this.iMagneticActivity = (Math.abs(Global.iParticleCenterX - x) +
+            Math.abs(Global.iParticleCenterY - y)) /
+            (Global.iSize * Config.iParticleRadius);
     this.x = x;
     this.y = y;
 
@@ -31,11 +31,11 @@ particle =function(x, y, iInitialRotation) {
         }//end check alpha sanity
 
         //fade the gradient
-        var iTempParticleColor =
-            Config.iParticleColor.substr(0, Config.iParticleColor.lastIndexOf(',') + 2) +
-            iAlpha + ')';
+        var iTempParticleColor = Config.iParticleColor.substr(0,
+                Config.iParticleColor.lastIndexOf(',') + 2) + iAlpha + ')';
 
-        DrawFunctions.drawCircle(x, y, Config.iParticleRadius, iTempParticleColor);
+        DrawFunctions.drawCircle(x, y,
+            Config.iParticleRadius, iTempParticleColor);
 
         var arrow = new Arrow.arrow(x, y, iRotation);
         arrow.draw();

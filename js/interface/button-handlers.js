@@ -5,19 +5,28 @@ var ButtonHandlers = {
     //function to play or pause the visualization
     pauseClick: function() {
         //set elements
-        ButtonHandlers.disableButton(document.getElementById('rnSize'), Global.bOn);
-        ButtonHandlers.disableButton(document.getElementById('rnStrength'), Global.bOn);
-        ButtonHandlers.disableButton(document.getElementById('rnTemp'), Global.bOn);
-        ButtonHandlers.disableButton(document.getElementById('btnMagnet'), Global.bOn);
-        ButtonHandlers.disableButton(document.getElementById('btnPolarity'), Global.bOn);
+        ButtonHandlers.disableButton(
+            document.getElementById('rnSize'), Global.bOn);
+        ButtonHandlers.disableButton(
+            document.getElementById('rnStrength'), Global.bOn);
+        ButtonHandlers.disableButton(
+            document.getElementById('rnTemp'), Global.bOn);
+        ButtonHandlers.disableButton(
+            document.getElementById('btnMagnet'), Global.bOn);
+        ButtonHandlers.disableButton(
+            document.getElementById('btnPolarity'), Global.bOn);
 
         //set the butotn text
         if(Global.bOn) {
-            document.getElementById('btnPause').innerHTML = 'Continue';
-            document.getElementById('btnPause').title = 'Continue the visualization';
+            document.getElementById('btnPause').innerHTML =
+                'Continue';
+            document.getElementById('btnPause').title =
+                'Continue the visualization';
         } else {
-            document.getElementById('btnPause').innerHTML = 'Pause';
-            document.getElementById('btnPause').title = 'Pause the visualization';
+            document.getElementById('btnPause').innerHTML =
+                'Pause';
+            document.getElementById('btnPause').title =
+                'Pause the visualization';
         }
 
         //toggle

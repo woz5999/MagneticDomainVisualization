@@ -11,7 +11,8 @@ var FieldLines = {
             var iLineCount = Math.ceil(Global.iStrength / 2);
 
             //set the maximum line density
-            var iMaxDensity = Global.iCanvasHeight - (Global.iCanvasHeight / 1.1);
+            var iMaxDensity = Global.iCanvasHeight -
+                (Global.iCanvasHeight / 1.1);
 
             //sanity check line density
             if(iLineCount > iMaxDensity) {

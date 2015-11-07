@@ -20,8 +20,8 @@ var Graph = {
             Global.ctxContext.fillStyle = Config.iGraphColor;
 
             //normalize the magnetization based on the number of particles
-            var iTempMagnetization =
-                (Global.iMagnetization / (Global.iParticlesLong * Global.iParticlesHigh)) * 100;
+            var iTempMagnetization = (Global.iMagnetization /
+                    (Global.iParticlesLong * Global.iParticlesHigh)) * 100;
 
             //determine if the graph width needs to be constrained
             if(iTempMagnetization > iGraphWidthMax) {
@@ -35,7 +35,8 @@ var Graph = {
             var iStartX;
             var iStartY = iGraphCenterY;
             var iWidth = Math.abs(iTempMagnetization) * iGraphMultipler;
-            var iHeight = (Config.iGraphThickness * 2) - (Config.iGraphThickness / 2);
+            var iHeight = (Config.iGraphThickness * 2) -
+                (Config.iGraphThickness / 2);
             var iTempGraphThickness = Config.iGraphThickness;
 
             //determine if the magnetization is positive
@@ -46,7 +47,8 @@ var Graph = {
                 iStartX = iGraphCenterX - iWidth;
                 iTempGraphThickness = -iTempGraphThickness;
 
-                //draw the graph with the top left corner starting at the top left of the graph
+                //draw the graph with the top left corner
+                //starting at the top left of the graph
                 Global.ctxContext.fillRect(iStartX, iStartY, iWidth, iHeight);
 
                 //set outline color for graph
@@ -58,14 +60,17 @@ var Graph = {
                 //set values for drawing the arrow
                 iStartX = iGraphCenterX + iWidth;
 
-                //draw the graph with the top left corner starting at the graph's 0
-                Global.ctxContext.fillRect(iGraphCenterX, iStartY, iWidth, iHeight);
+                //draw the graph with the top left corner
+                //starting at the graph's 0
+                Global.ctxContext.fillRect(iGraphCenterX, iStartY,
+                    iWidth, iHeight);
 
                 //set outline color for graph
                 Global.ctxContext.strokeStyle = Config.iGraphOutlineColor;
 
                 //outline graph
-                Global.ctxContext.strokeRect(iGraphCenterX, iStartY, iWidth, iHeight);
+                Global.ctxContext.strokeRect(iGraphCenterX, iStartY,
+                    iWidth, iHeight);
             }//end check positive magnetization else
 
             //set arrow head color

@@ -15,7 +15,8 @@ var particles = {
         //reset the overall magnetization
         Global.iMagnetization = 0;
 
-        var iCorner = iTempSize * ((Global.iParticleDiameter + Config.iParticleSpacing) / 2);
+        var iCorner = iTempSize *
+            ((Global.iParticleDiameter + Config.iParticleSpacing) / 2);
 
         //calculate the starting corner of the particle
         var iTempXMin = Math.floor(Global.iParticleCenterX - iCorner);
@@ -24,7 +25,8 @@ var particles = {
         //iterate through particles for the length of the main particle
         for(var i = 0; i < Global.iParticlesHigh; i++) {
             //set the y coordinate for this row
-            iTempYMin =  iTempYMin + (Global.iParticleDiameter) + Config.iParticleSpacing;
+            iTempYMin =  iTempYMin +
+                (Global.iParticleDiameter) + Config.iParticleSpacing;
             var y = iTempYMin;
 
             //iterate through particles for the width of the main particle
@@ -103,7 +105,8 @@ var particles = {
         for(i = 0; i < Global.iParticlesLong; i++) {
             //iterate widthwise
             for(j = 0; j < Global.iParticlesHigh; j++) {
-                //determine if the neighbor above's spin matches the current particle's spin
+                //determine if the neighbor above's spin
+                //matches the current particle's spin
                 if(this.arrParticles[this.getSpecificParticle(i, j)].iRotation ==
                     this.arrParticles[this.getSpecificParticle(i + 1, j)].iRotation) {
 
@@ -112,7 +115,8 @@ var particles = {
                     this.iNeighborCount--;
                 }
 
-                //determine if the neighbor to the right's spin matches the current particle's spin
+                //determine if the neighbor to the right's spin
+                //matches the current particle's spin
                 if(this.arrParticles[this.getSpecificParticle(i, j)].iRotation ==
                     this.arrParticles[this.getSpecificParticle(i, j + 1)].iRotation) {
 
@@ -134,8 +138,8 @@ var particles = {
     //function to attempt to flip a random particle
     flip: function() {
         //pick a random particle
-        var iIndex1 = Math.floor(Utils.random(0.0, 1.0) * Global.iParticlesLong);
-        var iIndex2 = Math.floor(Utils.random(0.0, 1.0) * Global.iParticlesHigh);
+        var iIndex1 = Math.floor(Utils.random(0.0, 1) * Global.iParticlesLong);
+        var iIndex2 = Math.floor(Utils.random(0.0, 1) * Global.iParticlesHigh);
 
         //get the index of the particle
         var i = this.getSpecificParticle(iIndex1, iIndex2);
@@ -145,10 +149,14 @@ var particles = {
 
         //store the combined magnetization of all four neighbors of the random particle
         var iDeltaNeighborCount =
-            this.arrParticles[this.getSpecificParticle(iIndex1 - 1, iIndex2)].iRotation +
-            this.arrParticles[this.getSpecificParticle(iIndex1 + 1, iIndex2)].iRotation +
-            this.arrParticles[this.getSpecificParticle(iIndex1, iIndex2 - 1)].iRotation +
-            this.arrParticles[this.getSpecificParticle(iIndex1, iIndex2 + 1)].iRotation;
+            this.arrParticles[
+                this.getSpecificParticle(iIndex1 - 1, iIndex2)].iRotation +
+            this.arrParticles[
+                this.getSpecificParticle(iIndex1 + 1, iIndex2)].iRotation +
+            this.arrParticles[
+                this.getSpecificParticle(iIndex1, iIndex2 - 1)].iRotation +
+            this.arrParticles[
+                this.getSpecificParticle(iIndex1, iIndex2 + 1)].iRotation;
 
         //calculate the potential change in neighboring magnetization
         iDeltaNeighborCount = -2 * this.arrParticles[i].iRotation *
