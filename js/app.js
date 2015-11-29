@@ -1,9 +1,10 @@
-var CanvasSetup = require("./canvas/canvas-setup");
-var Config = require("./config/user-config");
-var Draw = require("./canvas/draw");
-var Global = require("./config/global");
-var InterfaceUpdates = require("./interface/interface-updates");
-var Keyboard = require("./interface/keyboard-shortcuts");
+var ButtonHandlers = require('./interface/button-handlers');
+var CanvasSetup = require('./canvas/canvas-setup');
+var Config = require('./config/user-config');
+var Draw = require('./canvas/draw');
+var Global = require('./config/global');
+var InterfaceUpdates = require('./interface/interface-updates');
+var Keyboard = require('./interface/keyboard-shortcuts');
 var Toggle = require('./interface/toggle');
 
 function init() {
