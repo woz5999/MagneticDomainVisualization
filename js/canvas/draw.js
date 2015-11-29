@@ -39,10 +39,15 @@ var Draw = {
                 var particle = Particles.arrParticles[i];
                 particle.draw();
             }
-
-            FieldLines.drawFieldLines();
-            Speedometer.drawSpeedometer();
-            Graph.drawGraph();
+            if(Config.bFieldLines) {
+                FieldLines.drawFieldLines();
+            }
+            if(Config.bSpeedometer) {
+                Speedometer.drawSpeedometer();
+            }
+            if(Config.bGraph) {
+                Graph.drawGraph();
+            }
         }//end check on/off if
     },
 };

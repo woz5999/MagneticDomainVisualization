@@ -57,6 +57,11 @@ var UserConfig = {
     cTempDown: 'k', //set the button to decrease temp
     cTempUp: 'l', //set the button to increase temp
 
+    //embelishments to display
+    bSpeedometer: false,
+    bGraph: true,
+    bFieldLines: true,
+
     //tweaks
     iFadeStrength: 20, //amount to fade particles with less magnetism
     iMagnetStrength: 1, //G?
