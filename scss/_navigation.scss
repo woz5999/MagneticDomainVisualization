@@ -1,0 +1,29 @@
+@import "./utils/mixins";
+
+$black: #000;
+$white: #fff;
+$corner-radius: 4px;
+
+.nav-menu {
+    margin-top: -8px;
+}
+
+.drawer-btn {
+    @include border-radius($corner-radius);
+    @extend .center;
+    @extend .text-center;
+    @extend %button;
+
+    height: 50px;
+    padding: 8px;
+    width: 120px;
+}
+
+.drawer-text {
+    box-shadow: 5px 5px 20px #888;
+    margin-left: 8px;
+    margin-right: 8px;
+    position: fixed;
+    width: 50%;
+    z-index: 1000;
+}
