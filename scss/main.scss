@@ -1,5 +1,7 @@
-@import './grid';
-@import './utils/mixins';
+//@import "./grid";
+@import "./navigation";
+@import "./utils/mixins";
+@import "./utils/modal";
 
 $black: #000;
 $white: #fff;
@@ -18,6 +20,7 @@ $error-text-color: #f22;
 $corner-radius: 4px;
 
 ///////////////////////ELEMENTS////////////////
+
 canvas {
   background-color: $white;
   border: 1px solid $black;
@@ -25,11 +28,10 @@ canvas {
   margin-top: 14px;
   max-height: 60vh;
   width: 100%;
-  }
+}
 
 body {
   background-color: $body-background-color;
-  // background-image: url('./particlebackground.jpg');
   font-family: sans-serif;
   font-size: $default-font;
   text-align: center;
@@ -38,9 +40,10 @@ body {
 h1 a {
   color: $black;
   text-decoration: none;
-  }
+}
 
 ///////////////////////LAYOUT////////////////
+
 .center {
   float: none;
   margin: 0 auto;
@@ -48,15 +51,15 @@ h1 a {
 
 .text-center {
   text-align: center;
-  }
+}
 
 .text-left {
   text-align: left;
-  }
+}
 
 .text-right {
   text-align: right;
-    }
+}
 
 .spacer {
   min-height: 16px;
@@ -69,21 +72,19 @@ h1 a {
 .main {
   margin-left: auto;
   margin-right: auto;
-  }
+}
 
 /////////////////////BUTTONS////////////////
-button {
+
+%button {
   @include border-radius($corner-radius);
   background-color: $button-background-color;
   border: 0;
   font-size: $default-font;
-  height: 40px;
-  margin: 8px;
-  width: 100px;
 
   &:hover {
     background-color: $button-hover-background-color;
-    }
+  }
 
   &.disabled {
     background-color: $button-disabled-background-color;
@@ -95,11 +96,19 @@ button {
   }
 }
 
+.control-button {
+    @extend %button;
+    height: 40px;
+    margin: 8px;
+    width: 100px;
+}
+
 .button-row {
   margin-top: 14px;
 }
 
 ///////////////////////ERROR////////////////
+
 .error-div {
   background-color: $error-background-color;
   color: $error-text-color;
@@ -107,10 +116,10 @@ button {
 }
 
 ///////////////////////TEXT////////////////
+
 .instructions {
   @include border-radius($corner-radius);
   background-color: $white;
-  padding: 8px;
 }
 
 .heading {
@@ -122,4 +131,10 @@ button {
 .title {
   font-size: $title-font;
   font-weight: bold;
+}
+
+//////////////////SLIDERS/////////
+.slider-row {
+    padding-left: 25%;
+    padding-right: 25%;
 }
