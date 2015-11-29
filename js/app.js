@@ -1,4 +1,3 @@
-var ButtonHandlers = require("./interface/button-handlers");
 var CanvasSetup = require("./canvas/canvas-setup");
 var Config = require("./config/user-config");
 var Draw = require("./canvas/draw");
@@ -8,9 +7,9 @@ var Keyboard = require("./interface/keyboard-shortcuts");
 
 function init() {
     //grab the sliders
-    rnTemp = document.getElementById('rnTemp');
-    rnSize = document.getElementById('rnSize');
-    rnStrength = document.getElementById('rnStrength');
+    rnTemp = document.querySelector('#rnTemp');
+    rnSize = document.querySelector('#rnSize');
+    rnStrength = document.querySelector('#rnStrength');
 
     iSizeMin = rnSize.min;
     iSizeMax = rnSize.max;
@@ -20,9 +19,9 @@ function init() {
     iStrengthMax = rnStrength.max;
 
     //grab the buttons
-    btnPolarity = document.getElementById('btnPolarity');
-    btnPause = document.getElementById('btnPause');
-    btnMagnet = document.getElementById('btnMagnet');
+    btnPolarity = document.querySelector('#btnPolarity');
+    btnPause = document.querySelector('#btnPause');
+    btnMagnet = document.querySelector('#btnMagnet');
 
     //set button event handlers
     btnPolarity.onclick = ButtonHandlers.polarityClick;
@@ -40,7 +39,7 @@ function init() {
         rnStrength.onchange = InterfaceUpdates.rangeChange;
 
         //grab the button
-        var btnPause = document.getElementById('btnPause');
+        var btnPause = document.querySelector('#btnPause');
 
         //attach key press event to keyboard buttons
         document.onkeypress = Keyboard.keyPress.bind(Keyboard);

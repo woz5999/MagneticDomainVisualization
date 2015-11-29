@@ -6,26 +6,26 @@ var ButtonHandlers = {
     pauseClick: function() {
         //set elements
         ButtonHandlers.disableButton(
-            document.getElementById('rnSize'), Global.bOn);
+            document.querySelector('#rnSize'), Global.bOn);
         ButtonHandlers.disableButton(
-            document.getElementById('rnStrength'), Global.bOn);
+            document.querySelector('#rnStrength'), Global.bOn);
         ButtonHandlers.disableButton(
-            document.getElementById('rnTemp'), Global.bOn);
+            document.querySelector('#rnTemp'), Global.bOn);
         ButtonHandlers.disableButton(
-            document.getElementById('btnMagnet'), Global.bOn);
+            document.querySelector('#btnMagnet'), Global.bOn);
         ButtonHandlers.disableButton(
-            document.getElementById('btnPolarity'), Global.bOn);
+            document.querySelector('#btnPolarity'), Global.bOn);
 
         //set the butotn text
         if(Global.bOn) {
-            document.getElementById('btnPause').innerHTML =
+            document.querySelector('#btnPause').innerHTML =
                 'Continue';
-            document.getElementById('btnPause').title =
+            document.querySelector('#btnPause').title =
                 'Continue the visualization';
         } else {
-            document.getElementById('btnPause').innerHTML =
+            document.querySelector('#btnPause').innerHTML =
                 'Pause';
-            document.getElementById('btnPause').title =
+            document.querySelector('#btnPause').title =
                 'Pause the visualization';
         }
 
@@ -35,7 +35,7 @@ var ButtonHandlers = {
 
     //function to toggle the magnet
     magnetClick: function() {
-        var rnStrength = document.getElementById('rnStrength');
+        var rnStrength = document.querySelector('#rnStrength');
 
         //determine if we're toggling on or off
         if(Global.bMagnetOn) {
@@ -51,7 +51,7 @@ var ButtonHandlers = {
         InterfaceUpdates.rangeChange(rnStrength);
 
         //toggle the slider
-        document.getElementById('rnStrength').disabled = Global.bMagnetOn;
+        document.querySelector('#rnStrength').disabled = Global.bMagnetOn;
 
         //toggle
         Global.bMagnetOn = !Global.bMagnetOn;

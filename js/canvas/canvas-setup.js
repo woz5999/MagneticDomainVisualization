@@ -5,7 +5,7 @@ var InterfaceUpdates = require("../interface/interface-updates");
 var CanvasSetup = {
     //function to construct canvas and assign variables based on its parameters
     setupCanvas: function() {
-        var cCanvas = document.getElementById('particleCanvas');
+        var cCanvas = document.querySelector('#particleCanvas');
 
         //check if a canvas was found and if it has context
         if(cCanvas && cCanvas.getContext) {
@@ -23,8 +23,8 @@ var CanvasSetup = {
     //function to dynamically set canvas variables based on canvas size
     setCanvasVariables: function() {
         //store the canvas dimensions
-        Global.iCanvasHeight = document.getElementById('particleCanvas').height;
-        Global.iCanvasWidth =  document.getElementById('particleCanvas').width;
+        Global.iCanvasHeight = document.querySelector('#particleCanvas').height;
+        Global.iCanvasWidth = document.querySelector('#particleCanvas').width;
         Global.ctxContext.canvas.height = Global.iCanvasHeight;
         Global.ctxContext.canvas.width = Global.iCanvasWidth;
 
