@@ -16,7 +16,7 @@ var CanvasSetup = {
             Global.ctxContext.globalCompositeOperation = "source-over";
 
             //set canvas variables
-            this.setCanvasVariables();
+            CanvasSetup.setCanvasVariables();
         }
     },
 

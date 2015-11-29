@@ -92,6 +92,8 @@ function init() {
 
         //set drawing update interval
         setInterval(Draw, Config.iDrawInterval);
+
+        window.onresize = CanvasSetup.setupCanvas;
     }//end check context if
 }
 init();
