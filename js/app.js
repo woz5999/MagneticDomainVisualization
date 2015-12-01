@@ -1,3 +1,4 @@
+var Bio = require('./dialog/bio');
 var ButtonHandlers = require('./interface/button-handlers');
 var CanvasSetup = require('./canvas/canvas-setup');
 var Config = require('./config/user-config');
@@ -12,6 +13,9 @@ function init() {
     //display intro dialog
     Intro();
 
+    //set bio links
+    Bio.setup();
+    
     //grab the sliders
     rnTemp = document.querySelector('#rnTemp');
     rnSize = document.querySelector('#rnSize');
