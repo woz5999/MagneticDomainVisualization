@@ -42,6 +42,14 @@ h1 a {
   text-decoration: none;
 }
 
+.dialog {
+  @include border-radius($corner-radius);
+  background-color: $white;
+  color: $black;
+  min-height: 400px;
+  min-width: 400px;
+}
+
 ///////////////////////LAYOUT////////////////
 
 .center {

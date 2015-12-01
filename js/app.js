@@ -3,11 +3,15 @@ var CanvasSetup = require('./canvas/canvas-setup');
 var Config = require('./config/user-config');
 var Draw = require('./canvas/draw');
 var Global = require('./config/global');
+var Intro = require('./objects/intro');
 var InterfaceUpdates = require('./interface/interface-updates');
 var Keyboard = require('./interface/keyboard-shortcuts');
 var Toggle = require('./interface/toggle');
 
 function init() {
+    //display intro dialog
+    Intro();
+
     //grab the sliders
     rnTemp = document.querySelector('#rnTemp');
     rnSize = document.querySelector('#rnSize');
