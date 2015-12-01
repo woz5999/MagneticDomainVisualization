@@ -5,27 +5,27 @@ $half-black-trans: rgba(0, 0, 0, .5);
 }
 
 .modal {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 1050;
-  display: none;
-  overflow: hidden;
   -webkit-overflow-scrolling: touch;
-  outline: 0;
   background-color: $half-black-trans;
+  bottom: 0;
+  display: none;
+  left: 0;
+  outline: 0;
+  overflow: hidden;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 1050;
 
   &.fade .modal-dialog {
     @include transition-ease-out(.3s);
     @include transform-translate(0, -25%);
-    }
+  }
 
   &.in .modal-dialog {
     @include transform-translate(0, 0);
     }
-}
+  }
 
 .modal-dialog {
   margin: 10px;
