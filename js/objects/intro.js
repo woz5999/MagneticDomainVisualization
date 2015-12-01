@@ -1,7 +1,7 @@
 var Intro = {
     intro: function() {
         //check if the intro has already been displayed
-        if(sessionStorage.introShown !== true) {
+        if(sessionStorage.introShown !== 'true') {
             //show dialog
             document.querySelector('#intro-dialog').style.display = 'block';
 
@@ -16,7 +16,7 @@ var Intro = {
         document.querySelector('#intro-dialog').remove();
 
         //flag dialog as shown
-        sessionStorage.introShown = true;
+        sessionStorage.introShown = 'true';
     }
 };
 
