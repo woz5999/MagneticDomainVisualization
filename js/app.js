@@ -11,11 +11,11 @@ var Toggle = require('./interface/toggle');
 
 function init() {
     //display intro dialog
-    Intro();
+    // Intro();
 
     //set bio links
     Bio.setup();
-    
+
     //grab the sliders
     rnTemp = document.querySelector('#rnTemp');
     rnSize = document.querySelector('#rnSize');
