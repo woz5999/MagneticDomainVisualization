@@ -1,0 +1,28 @@
+runtime: python27
+api_version: 1
+version: v1
+application: magnetic-domain-viz
+threadsafe: true
+
+skip_files:
+  - .*\.json
+  - .*\.md
+  - .*\.pdf
+  - .*\.sh
+  - \.gitignore
+  - Dockerfile
+  - node_modules
+  - scss
+
+handlers:
+- url: /
+  static_files: MagneticDomainVisualization.html
+  upload: MagneticDomainVisualization.html
+
+- url: /css/(.*\.(css))$
+  static_files: css/\1
+  upload: css/.*\.(css)
+
+- url: /js/(.*\.(js))$
+  static_files: js/\1
+  upload: js/.*\.(js)
