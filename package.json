@@ -18,9 +18,10 @@
   },
   "scripts": {
     "start": "watchify -o js/bundle.js -v -d js/app.js",
-    "build": "browserify . -t [envify --NODE_ENV production] | uglifyjs -cm > js/bundle.min.js && npm run build-css;",
+    "build": "browserify -o js/bundle.js -v -d js/app.js &&  browserify . -t [envify --NODE_ENV production] | uglifyjs -cm > js/bundle.min.js && npm run build-css;",
     "test": "jest",
-    "build-css": "node-sass --include-path ./scss --output ./css ./scss/main.scss"
+    "build-css": "node-sass --include-path ./scss --output ./css ./scss/main.scss",
+    "deploy": "npm run build && appcfg.py update ."
   },
   "author": "Jeff Wozniak",
   "browserify": {
