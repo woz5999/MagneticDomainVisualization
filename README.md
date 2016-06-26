@@ -1,4 +1,4 @@
-#[Magnetic Domain Visualization](http://52.27.90.205/MagneticDomainVisualization.html)
+#[Magnetic Domain Visualization](https://magnetic-domain-viz.appspot.com/)
 
 This is a project I created for a colleague working in education.
 
