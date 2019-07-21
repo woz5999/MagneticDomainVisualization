@@ -60,6 +60,7 @@ var ButtonHandlers = {
     //function to toggle polarity
     polarityClick: function () {
         Global.strPolarity = (Global.strPolarity == 'N') ? 'S' : 'N';
+        InterfaceUpdates.polarityChange()
     },
 
     disableButton: function (button, disabled) {

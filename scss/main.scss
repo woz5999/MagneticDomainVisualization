@@ -7,6 +7,9 @@
 $black: #000;
 $white: #fff;
 
+$north: #f53c3c;
+$south: #3c45f5;
+
 $default-font: 14px;
 $heading-font: 18px;
 $title-font: 24px;
@@ -41,6 +44,19 @@ body {
 h1 a {
   color: $black;
   text-decoration: none;
+}
+
+.polarity-label {
+  font-family: sans-serif;
+  font-size: $heading-font;
+}
+
+.north {
+  color: $north
+}
+
+.south {
+  color: $south
 }
 
 .dialog {
