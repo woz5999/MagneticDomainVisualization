@@ -46,13 +46,17 @@ function init() {
         //attach key press event to keyboard buttons
         document.onkeypress = Keyboard.keyPress.bind(Keyboard);
 
-        //get max number of particles
-        //(canvas height /(particle width + spacing))^2)
-        Global.iSizeRangeMax = Math.floor(Math.pow(Global.iCanvasHeight /
-            ((Config.iParticleRadius * 2) + Config.iParticleSpacing), 2));
+        if (!Config.iSizeRangeMax) {
+            //get max number of particles
+            //(canvas height /(particle width + spacing))^2)
+            Global.iSizeRangeMax = Math.floor(Math.pow(Global.iCanvasHeight /
+                ((Config.iParticleRadius * 2) + Config.iParticleSpacing), 2));
 
-        //round particles to nearest 100
-        Global.iSizeRangeMax = Math.round(Global.iSizeRangeMax / 100) * 100;
+            //round particles to nearest 100
+            Global.iSizeRangeMax = Math.round(Global.iSizeRangeMax / 100) * 100;
+        } else {
+            Global.iSizeRangeMax = Config.iSizeRangeMax
+        }
 
         //set initial parameters
         CanvasSetup.setParameters(Config.iTempRangeMin,
