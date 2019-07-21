@@ -34,7 +34,7 @@ function init() {
     CanvasSetup.setupCanvas();
 
     //make sure there is context
-    if(Global.ctxContext) {
+    if (Global.ctxContext) {
         //attach change events to the sliders
         rnTemp.onchange = InterfaceUpdates.rangeChange;
         rnSize.onchange = InterfaceUpdates.rangeChange;
@@ -62,7 +62,7 @@ function init() {
         CanvasSetup.setParameters(Config.iTempRangeMin,
             rnTemp, 'rnTempMin');
         CanvasSetup.setParameters(Config.iTempRangeMax,
-             rnTemp, 'rnTempMax');
+            rnTemp, 'rnTempMax');
         CanvasSetup.setParameters(Config.iStrengthRangeMin,
             rnStrength, 'rnStrengthMin');
         CanvasSetup.setParameters(Config.iStrengthRangeMax,
@@ -73,19 +73,22 @@ function init() {
             rnSize, 'rnSizeMax');
 
         //set the default range values
-        rnTemp.value = Config. iTempStart;
+        rnTemp.value = Config.iTempStart;
         rnStrength.value = Config.iStrengthStart;
         rnSize.value = Config.iSizeStart;
 
         //update slider values
-         InterfaceUpdates.rangeChange(rnTemp);
-         InterfaceUpdates.rangeChange(rnStrength);
-         InterfaceUpdates.rangeChange(rnSize);
+        InterfaceUpdates.rangeChange(rnTemp);
+        InterfaceUpdates.rangeChange(rnStrength);
+        InterfaceUpdates.rangeChange(rnSize);
+
+        //set the polarity labels
+        InterfaceUpdates.polarityChange()
 
         //set drawing update interval
         setInterval(Draw, Config.iDrawInterval);
 
         window.onresize = CanvasSetup.setupCanvas;
-    }//end check context if
+    } //end check context if
 }
 init();

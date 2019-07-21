@@ -3,7 +3,7 @@ var InterfaceUpdates = require("./interface-updates");
 
 var ButtonHandlers = {
     //function to play or pause the visualization
-    pauseClick: function() {
+    pauseClick: function () {
         //set elements
         ButtonHandlers.disableButton(
             document.querySelector('#rnSize'), Global.bOn);
@@ -17,7 +17,7 @@ var ButtonHandlers = {
             document.querySelector('#btnPolarity'), Global.bOn);
 
         //set the butotn text
-        if(Global.bOn) {
+        if (Global.bOn) {
             document.querySelector('#btnPause').innerHTML =
                 'Continue';
             document.querySelector('#btnPause').title =
@@ -34,13 +34,13 @@ var ButtonHandlers = {
     },
 
     //function to toggle the magnet
-    magnetClick: function() {
+    magnetClick: function () {
         var rnStrength = document.querySelector('#rnStrength');
 
         //determine if we're toggling on or off
-        if(Global.bMagnetOn) {
+        if (Global.bMagnetOn) {
             //store the current value of the slider
-            Global.iTempStrength =Global.iStrength;
+            Global.iTempStrength = Global.iStrength;
             rnStrength.value = 0;
         } else {
             //restore the value of the slider
@@ -58,19 +58,19 @@ var ButtonHandlers = {
     },
 
     //function to toggle polarity
-    polarityClick: function() {
+    polarityClick: function () {
         Global.strPolarity = (Global.strPolarity == 'N') ? 'S' : 'N';
     },
 
-    disableButton: function(button, disabled) {
+    disableButton: function (button, disabled) {
         button.disable = disabled;
 
-        if(disabled) {
+        if (disabled) {
             button.classList.add('disabled');
         } else {
             button.classList.remove('disabled');
         }
-    }//end disableButton
+    } //end disableButton
 };
 
 module.exports = ButtonHandlers;
