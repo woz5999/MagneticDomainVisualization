@@ -9,15 +9,15 @@ var Speedometer = require("../objects/speedometer");
 
 var Draw = {
     //function to draw everything
-    draw: function() {
+    draw: function () {
         //check if the visualization is turned on
-        if(Global.bOn) {
+        if (Global.bOn) {
             //clear the canvas
             Global.ctxContext.clearRect(0, 0,
                 Global.iCanvasWidth, Global.iCanvasHeight);
 
             //determine if the canvas dimensions have changed
-            if(Global.iCanvasHeight !=
+            if (Global.iCanvasHeight !=
                 document.querySelector('#particleCanvas').height ||
                 Global.iCanvasWidth !=
                 document.querySelector('#particleCanvas').width) {
@@ -30,8 +30,11 @@ var Draw = {
                 Particles.addParticles();
             }
 
+            if (Config.bFieldLines) {
+                FieldLines.drawFieldLines();
+            }
             //iterate through particle array
-            for(i = 0; i < Particles.arrParticles.length; i++) {
+            for (i = 0; i < Particles.arrParticles.length; i++) {
                 //flip flop
                 Particles.flip();
 
@@ -39,16 +42,13 @@ var Draw = {
                 var particle = Particles.arrParticles[i];
                 particle.draw();
             }
-            if(Config.bFieldLines) {
-                FieldLines.drawFieldLines();
-            }
-            if(Config.bSpeedometer) {
+            if (Config.bSpeedometer) {
                 Speedometer.drawSpeedometer();
             }
-            if(Config.bGraph) {
+            if (Config.bGraph) {
                 Graph.drawGraph();
             }
-        }//end check on/off if
+        } //end check on/off if
     },
 };
 
