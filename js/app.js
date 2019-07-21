@@ -1,21 +1,13 @@
-var Bio = require('./dialog/bio');
 var ButtonHandlers = require('./interface/button-handlers');
 var CanvasSetup = require('./canvas/canvas-setup');
 var Config = require('./config/user-config');
 var Draw = require('./canvas/draw');
 var Global = require('./config/global');
-var Intro = require('./dialog/intro');
 var InterfaceUpdates = require('./interface/interface-updates');
 var Keyboard = require('./interface/keyboard-shortcuts');
 var Toggle = require('./interface/toggle');
 
 function init() {
-    //display intro dialog
-    // Intro();
-
-    //set bio links
-    Bio.setup();
-
     //grab the sliders
     rnTemp = document.querySelector('#rnTemp');
     rnSize = document.querySelector('#rnSize');
@@ -85,19 +77,6 @@ function init() {
          InterfaceUpdates.rangeChange(rnTemp);
          InterfaceUpdates.rangeChange(rnStrength);
          InterfaceUpdates.rangeChange(rnSize);
-
-         //set event listeners for supplement buttons
-         document.querySelector('#btn-legend').addEventListener('click',
-            function(e) {
-                Toggle.slide(document.querySelector('#legend'));
-                Toggle.arrow(document.querySelector('#legend-arrow'));
-         });
-
-         document.querySelector('#btn-plan').addEventListener('click',
-            function(e) {
-                Toggle.slide(document.querySelector('#plan'));
-                Toggle.arrow(document.querySelector('#plan-arrow'));
-         });
 
         //set drawing update interval
         setInterval(Draw, Config.iDrawInterval);
