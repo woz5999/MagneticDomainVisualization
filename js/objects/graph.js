@@ -4,27 +4,24 @@ var Global = require("../config/global");
 
 var Graph = {
     //function to draw the activity graph
-    drawGraph: function() {
+    drawGraph: function () {
         //get starting midpoints of the graph
-        var iGraphCenterX = Global. iCanvasCenterX;
+        var iGraphCenterX = Global.iCanvasCenterX;
         var iGraphCenterY = Global.iCanvasHeight - (Config.iGraphThickness * 4);
         //save some math
-        var iGraphSpacing = ((3 * Config. iGraphThickness) / 2);
+        var iGraphSpacing = ((3 * Config.iGraphThickness) / 2);
 
         //calculate the width of the graph
         var iGraphWidthMax = Global.iCanvasWidth * (Config.iGraphWidth / 100);
 
         //determine if activity is 0
-        if(0 !== Global.iMagnetization) {
-            //set the color of the activity graph
-            Global.ctxContext.fillStyle = Config.iGraphColor;
-
+        if (0 !== Global.iMagnetization) {
             //normalize the magnetization based on the number of particles
             var iTempMagnetization = (Global.iMagnetization /
-                    (Global.iParticlesLong * Global.iParticlesHigh)) * 100;
+                (Global.iParticlesLong * Global.iParticlesHigh)) * 100;
 
             //determine if the graph width needs to be constrained
-            if(iTempMagnetization > iGraphWidthMax) {
+            if (iTempMagnetization > iGraphWidthMax) {
                 //constrain the graph's width
                 iTempMagnetization = iGraphWidthMax;
             }
@@ -39,8 +36,18 @@ var Graph = {
                 (Config.iGraphThickness / 2);
             var iTempGraphThickness = Config.iGraphThickness;
 
+            //set outline color for graph
+            Global.ctxContext.strokeStyle = Config.iGraphOutlineColor;
+
+            //set the color of the activity graph
+            if (iTempMagnetization > 0) {
+                Global.ctxContext.fillStyle = Config.iGraphColorSouth;
+            } else {
+                Global.ctxContext.fillStyle = Config.iGraphColorNorth;
+            }
+
             //determine if the magnetization is positive
-            if((iTempMagnetization > 0 && Global.strPolarity == 'N') ||
+            if ((iTempMagnetization > 0 && Global.strPolarity == 'N') ||
                 (iTempMagnetization < 0 && Global.strPolarity == 'S')) {
 
                 //set values for drawing the arrow
@@ -51,12 +58,10 @@ var Graph = {
                 //starting at the top left of the graph
                 Global.ctxContext.fillRect(iStartX, iStartY, iWidth, iHeight);
 
-                //set outline color for graph
-                Global.ctxContext.strokeStyle = Config.iGraphOutlineColor;
-
                 //outline graph
                 Global.ctxContext.strokeRect(iStartX, iStartY, iWidth, iHeight);
             } else {
+
                 //set values for drawing the arrow
                 iStartX = iGraphCenterX + iWidth;
 
@@ -65,21 +70,15 @@ var Graph = {
                 Global.ctxContext.fillRect(iGraphCenterX, iStartY,
                     iWidth, iHeight);
 
-                //set outline color for graph
-                Global.ctxContext.strokeStyle = Config.iGraphOutlineColor;
-
                 //outline graph
                 Global.ctxContext.strokeRect(iGraphCenterX, iStartY,
                     iWidth, iHeight);
-            }//end check positive magnetization else
-
-            //set arrow head color
-            Global.ctxContext.fillStyle = Config.iGraphArrowColor;
+            } //end check positive magnetization else
 
             //draw an arrow head on the graph
             Global.ctxContext.beginPath();
             Global.ctxContext.moveTo(iStartX,
-                iGraphCenterY + (Config.iGraphThickness  * 2.5));
+                iGraphCenterY + (Config.iGraphThickness * 2.5));
             Global.ctxContext.lineTo(iStartX + (iTempGraphThickness * 2),
                 iGraphCenterY + Config.iGraphThickness);
             Global.ctxContext.lineTo(iStartX,
@@ -87,7 +86,7 @@ var Graph = {
             Global.ctxContext.closePath();
             Global.ctxContext.fill();
             Global.ctxContext.stroke();
-        }//end check 0 overall activity if
+        } //end check 0 overall activity if
 
         //set the background color for the graph
         Global.ctxContext.fillStyle = Config.iGraphBackgroundColor;
@@ -113,15 +112,23 @@ var Graph = {
             'bottom');
 
         //draw the graph labels
-        Global.ctxContext.fillText(Config.strGraphTitle,
-            iGraphCenterX, iLabelY + (Config.strLabelFontSize * 2));
-        Global.ctxContext.fillText(Config.strGraphLeftLabel,
-            iLabelStart, iLabelY);
-        Global.ctxContext.fillText(Config.strGraphCenterLabel, iGraphCenterX ,
-            iLabelY + (iGraphSpacing / 2));
-        Global.ctxContext.fillText(Config.strGraphRightLabel,
-            iLabelEnd, iLabelY);
-    }//end drawGraph
+        if (Config.strGraphTitle) {
+            Global.ctxContext.fillText(Config.strGraphTitle,
+                iGraphCenterX, iLabelY + (Config.strLabelFontSize * 2));
+        }
+        if (Config.strGraphLeftLabel) {
+            Global.ctxContext.fillText(Config.strGraphLeftLabel,
+                iLabelStart, iLabelY);
+        }
+        if (Config.strGraphCenterLabel) {
+            Global.ctxContext.fillText(Config.strGraphCenterLabel, iGraphCenterX,
+                iLabelY + (iGraphSpacing / 2));
+        }
+        if (Config.strGraphRightLabel) {
+            Global.ctxContext.fillText(Config.strGraphRightLabel,
+                iLabelEnd, iLabelY);
+        }
+    } //end drawGraph
 };
 
 module.exports = Graph;

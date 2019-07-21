@@ -3,35 +3,44 @@ var Global = require("../config/global");
 
 var Arrow = {
     //arrow class
-    arrow: function(x, y, iMagneticActivity) {
+    arrow: function (x, y, iRotation) {
         //cut down on repetitive computations to save some cpu
         var iLengthShort = Config.iParticleRadius - (Config.iArrowSize * 1.5);
         var iLengthLong = Config.iParticleRadius - (Config.iArrowSize / 1.5);
 
         //function to draw the arrow
-        this.draw = function(){
+        this.draw = function () {
             //set the line parameters
             Global.ctxContext.lineWidth = Config.iarrowWidth;
             Global.ctxContext.lineJoin = 'miter';
-            Global.ctxContext.strokeStyle = Config.iarrowColor;
-
-            //determine if polarity is flipped
-            if(Global.strPolarity == 'S') {
-                //reverse the magnetic activity
-                Global.iMagneticActivity = -Global.iMagneticActivity;
-            }
 
             //determine if rotation is positive or negative
-            if(iMagneticActivity != 1) {
-                iLengthLong =  -iLengthLong;
+            if ((iRotation == -1 && Global.strPolarity == 'N') || (iRotation == 1 && Global.strPolarity == 'S')) {
+                iLengthLong = -iLengthLong;
                 iLengthShort = -iLengthShort;
             }
 
+            //set arrow color
+            if (Global.strPolarity == 'N') {
+                if (iRotation == -1) {
+                    Global.ctxContext.strokeStyle = Config.iArrowColorNorth
+                } else {
+                    Global.ctxContext.strokeStyle = Config.iArrowColorSouth
+                }
+            } else if (Global.strPolarity == 'S') {
+                if (iRotation == 1) {
+                    Global.ctxContext.strokeStyle = Config.iArrowColorSouth
+                } else {
+                    Global.ctxContext.strokeStyle = Config.iArrowColorNorth
+                }
+            }
+
             this.drawArrow(x, y, iLengthLong, iLengthShort, Config.iArrowSize);
-        };//end this.draw
+        }; //end this.draw
 
         //function to draw the arrow
-        this.drawArrow = function(iX, iY, iLong, iShort, iSize) {
+        this.drawArrow = function (iX, iY, iLong, iShort, iSize) {
+
             //save a tiny bit of math
             var iXMShort = iX - iShort;
             var iXMLong = iX - iLong;
@@ -47,7 +56,7 @@ var Arrow = {
             Global.ctxContext.closePath();
             Global.ctxContext.stroke();
         };
-    }//end arrow
+    } //end arrow
 };
 
 module.exports = Arrow;
