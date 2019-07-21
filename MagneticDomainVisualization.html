@@ -3,8 +3,8 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Magnetic Domain Visualization</title>
-	<link rel="stylesheet" href="./css/bootstrap.css">
-    <link rel="stylesheet" href="./css/main.css">
+	<link rel="stylesheet" href="./css/bootstrap.min.css">
+	<link rel="stylesheet" href="./css/main.css">
 </head>
 
 <body>
@@ -124,7 +124,6 @@
 								</div>
 							</div>
 						</div>
-					</div>
 				</div>
 			</div>
 		</div>
@@ -151,7 +150,7 @@
 							<input type="range" id="rnSize" min="25" max="4800" step="25">
 						</div>
 						<div class="row">
-							Domain Size
+							Particle Size
 						</div>
 					</div>
 				</div>
@@ -164,7 +163,7 @@
 							<input type="range" id="rnStrength" min="0" max="100" step="5">
 						</div>
 						<div class="row">
-							Applied Field Strength
+							Applied Field
 						</div>
 					</div>
 				</div>
@@ -185,7 +184,7 @@
 			<div id="buttons" class="row button-row">
 				<div class="col-xs-4">
 					<button id="btnMagnet" type="button" title="Toggle the applied field" class="control-button">
-						Applied Field <!--On / Off-->
+						Field On/Off <!--On / Off-->
 					</button>
 				</div>
 				<div class="col-xs-4">
@@ -205,16 +204,8 @@
 		</div>
 	</div>
 	<div class="row footer">
-		<div class="bio-row">
-			<div class="col-xs-9 center">
-				Authors
-				<a id="dave-bio" href="#">David Sederberg</a>
-				<a id="jeff-bio" href="#">Jeff Wozniak</a>
-			</div>
-		</div>
 	</div>
 
-    <script src="js/bundle.js"></script>
-	<!-- <script src="js/bundle.min.js"></script> -->
+	<script src="js/bundle.js"></script>
 </body>
 </html>
