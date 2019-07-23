@@ -18,9 +18,9 @@ var Draw = {
 
             //determine if the canvas dimensions have changed
             if (Global.iCanvasHeight !=
-                document.querySelector('#particleCanvas').height ||
+                Math.trunc(document.querySelector('#particleCanvas').scrollHeight) ||
                 Global.iCanvasWidth !=
-                document.querySelector('#particleCanvas').width) {
+                Math.trunc(document.querySelector('#particleCanvas').scrollWidth)) {
 
                 //reset canvas variables
                 CanvasSetup.setCanvasVariables();

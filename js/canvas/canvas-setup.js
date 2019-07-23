@@ -4,11 +4,11 @@ var InterfaceUpdates = require("../interface/interface-updates");
 
 var CanvasSetup = {
     //function to construct canvas and assign variables based on its parameters
-    setupCanvas: function() {
+    setupCanvas: function () {
         var cCanvas = document.querySelector('#particleCanvas');
 
         //check if a canvas was found and if it has context
-        if(cCanvas && cCanvas.getContext) {
+        if (cCanvas && cCanvas.getContext) {
             //retrieve the canvas context
             Global.ctxContext = cCanvas.getContext('2d');
 
@@ -21,10 +21,12 @@ var CanvasSetup = {
     },
 
     //function to dynamically set canvas variables based on canvas size
-    setCanvasVariables: function() {
+    setCanvasVariables: function () {
         //store the canvas dimensions
-        Global.iCanvasHeight = document.querySelector('#particleCanvas').height;
-        Global.iCanvasWidth = document.querySelector('#particleCanvas').width;
+        Global.iCanvasHeight = Math.trunc(document.querySelector('#particleCanvas').scrollHeight);
+        Global.iCanvasWidth = Math.trunc(document.querySelector('#particleCanvas').scrollWidth);
+        console.log('width: ' + Global.iCanvasWidth);
+        console.log('height: ' + Global.iCanvasHeight);
         Global.ctxContext.canvas.height = Global.iCanvasHeight;
         Global.ctxContext.canvas.width = Global.iCanvasWidth;
 
@@ -41,11 +43,11 @@ var CanvasSetup = {
     },
 
     //function to dynamically set relevant parameters
-    setParameters: function(iValue, obj, strParam) {
+    setParameters: function (iValue, obj, strParam) {
         //determine if the param is a min or a max
-        if(strParam.indexOf('Min') != -1) {
+        if (strParam.indexOf('Min') != -1) {
             obj.min = iValue;
-        } else if(strParam.indexOf('Max') != -1) {
+        } else if (strParam.indexOf('Max') != -1) {
             obj.max = iValue;
         }
     }
