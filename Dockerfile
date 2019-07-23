@@ -1,4 +1,4 @@
-FROM httpd
+FROM httpd:2-alpine
 
 ARG JS_BUNDLE=bundle.js
 
