@@ -10,102 +10,106 @@
 <body>
 	<div class="container-fluid center">
 		<div class="row">
-			<div id="error" class="error-div"></div>
+			<div class="col-sm-12 text-center">
+				<div id="error" class="error-div"></div>
+			</div>
 		</div>
-	</div>
 		<div class="row">
-			<div id="title" class="title row center">
-				Magnetic Particle Visualization
-			</div>
-	</div>
-	<div id="dMain" class="main row">
-		<div class="col-12 text-center">
-			<canvas id="particleCanvas" class="canvas" width="983" height="611">
-				Please use an HTML5 compatible browser to view this simulation
-			</canvas>
-			<div id="dGraphLabels" class="row center">
-			<div class="col-4">
-				<div class="row text-center">
-					<span id="leftPolarityLabel" class="polarity-label"></span>
-				</div>
-			</div>
-			<div class="col-4">
-				<div class="row text-center">
-					Overall Magnetic Moment
-				</div>
-			</div>
-			<div class="col-4">
-				<div class="row text-center">
-					<span id="rightPolarityLabel" class="polarity-label"></span>
+			<div class="col-sm-12 text-center">
+				<div id="title" class="title center">
+					Magnetic Particle Visualization
 				</div>
 			</div>
 		</div>
-	</div>
-	<div id="controls" class="row center">
-		<div id="dLowerLabels" class="row">
-			<div id="controls" class="row center">
-				<div class="col-3">
-					<div class="row text-center">
+
+
+		<div id="dMain" class="main row">
+			<div class="col-sm-12 text-center">
+				<canvas id="particleCanvas" class="canvas" width="983" height="611">
+					Please use an HTML5 compatible browser to view this simulation
+				</canvas>
+			</div>
+		</div>
+
+		<div id="controls" class="row center">
+			<div class="col-sm-4">
+				<div class="row text-center">
+					<div class="col-sm-12">
 						<span id="rnSizeValue"></span> atoms
 					</div>
-					<div class="row">
-						<div class="row slider-row">
-							<input type="range" id="rnSize" min="25" max="4800" step="25">
-						</div>
-						<div class="row">
-							Particle Size
-						</div>
+				</div>
+				<div class="row slider-row">
+					<div class="col-sm-12">
+						<input type="range" id="rnSize" min="25" max="4800" step="25">
 					</div>
 				</div>
-				<div class="col-3">
-					<div class="row text-center">
-						<span id="rnStrengthValue"></span>%
-					</div>
-					<div class="row">
-						<div class="row slider-row">
-							<input type="range" id="rnStrength" min="0" max="100" step="5">
-						</div>
-						<div class="row">
-							Applied Field
-						</div>
-					</div>
-				</div>
-				<div class="col-3">
-					<div class="row text-center">
-						 <span id="rnTempValue"></span>K
-					</div>
-					<div class="row">
-						<div class="row slider-row">
-							<input type="range" id="rnTemp" min="0" max="1100" step="10">
-						</div>
-						<div class="row">
-							Temperature
-						</div>
+				<div class="row">
+					<div class="col-sm-12">
+						Particle Size
 					</div>
 				</div>
 			</div>
-			<div id="buttons" class="row button-row">
-				<div class="col-3">
-					<button id="btnMagnet" type="button" title="Toggle the applied field" class="control-button">
-						Field On/Off <!--On / Off-->
-					</button>
+
+			<div class="col-sm-4">
+				<div class="row text-center">
+					<div class="col-sm-12">
+						<span id="rnStrengthValue"></span>%
+					</div>
 				</div>
-				<div class="col-3">
-					<button id="btnPolarity" type="button" title="Flip the field's polarity" class="control-button">
-						Polarity
-						<span style="font-size: 20px">
-							&#x2194;
-						</span>
-					</button>
+				<div class="row slider-row">
+					<div class="col-sm-12">
+						<input type="range" id="rnStrength" min="0" max="100" step="5">
+					</div>
 				</div>
-				<div class="col-3">
-					<button id="btnPause" type="button" title="Pause the visualization" class="control-button">
-						Pause
-					</button>
+				<div class="row">
+					<div class="col-sm-12">
+						Applied Field
+					</div>
+				</div>
+			</div>
+
+			<div class="col-sm-4">
+				<div class="row text-center">
+					<div class="col-sm-12">
+						<span id="rnTempValue"></span>K
+					</div>
+				</div>
+				<div class="row slider-row">
+					<div class="col-sm-12">
+						<input type="range" id="rnTemp" min="0" max="1100" step="10">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12">
+						Temperature
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+
+		<div id="buttons" class="row button-row">
+			<div class="col-sm-4">
+				<button id="btnMagnet" type="button" title="Toggle the applied field" class="control-button">
+					Field On/Off <!--On / Off-->
+				</button>
+			</div>
+			<div class="col-sm-4">
+				<button id="btnPolarity" type="button" title="Flip the field's polarity" class="control-button">
+					Polarity
+					<span style="font-size: 20px">
+						&#x2194;
+					</span>
+				</button>
+			</div>
+			<div class="col-sm-4">
+				<button id="btnPause" type="button" title="Pause the visualization" class="control-button">
+					Pause
+				</button>
+			</div>
+		</div>
+
+	</div> <!-- end container -->
+
 	<div class="row footer">
 	</div>
 
