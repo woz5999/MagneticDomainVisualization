@@ -16,5 +16,5 @@ run:
 
 make build-run: build run
 
-build-distrib: build-js
+docker-distrib:
 	docker build --build-arg JS_BUNDLE=bundle.min.js -t magviz .
