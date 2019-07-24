@@ -82,9 +82,6 @@ function init() {
         InterfaceUpdates.rangeChange(rnStrength);
         InterfaceUpdates.rangeChange(rnSize);
 
-        //set the polarity labels
-        InterfaceUpdates.polarityChange()
-
         //set drawing update interval
         setInterval(Draw, Config.iDrawInterval);
 

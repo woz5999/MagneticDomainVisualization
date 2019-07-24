@@ -54,29 +54,6 @@ var InterfaceUpdates = {
 
         //update the interface
         document.getElementById(strName + 'Value').innerHTML = iValue;
-    },
-
-    //function to handle polarity changes
-    polarityChange: function () {
-        left = document.getElementById('leftPolarityLabel')
-        right = document.getElementById('rightPolarityLabel')
-        if (Global.strPolarity == 'N') {
-            left.innerHTML = 'S';
-            left.classList.remove('north');
-            left.classList.add('south');
-
-            right.innerHTML = 'N';
-            right.classList.remove('south');
-            right.classList.add('north');
-        } else {
-            left.innerHTML = 'N';
-            left.classList.remove('south');
-            left.classList.add('north');
-
-            right.innerHTML = 'S';
-            right.classList.remove('north');
-            right.classList.add('south');
-        }
     }
 };
 

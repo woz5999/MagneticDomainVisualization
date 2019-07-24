@@ -28,7 +28,8 @@ var UserConfig = {
   strGraphCenterLabel: '', //center label for the graph
   strGraphLeftLabel: '', //leftmost label for the graph
   strGraphRightLabel: '', //rightmost label for the graph
-  strGraphTitle: '',
+  bPolarityLabels: true, //whether or not to display graph labels as N/S
+  strGraphTitle: 'Overall Magnetic Moment',
 
   //colors
   iArrowColorNorth: 'rgb(245, 60, 60)', //color of the polarity arrow when facing north
@@ -50,7 +51,10 @@ var UserConfig = {
   strGaugeFont: '14px verdana, sans-serif', //font for gauge labels
   strGaugeOffFont: '14px verdana, sans-serif', //font for display text when gauge is off
   strGaugeTitleFont: '14px verdana, sans-serif', //font for display text when gauge is off
-  strGraphFont: ' sans-serif', //font for graph labels, 'bold --px' is dynamically generated below, assign this   accordingly
+  strGraphFont: ' sans-serif', //font for graph labels
+  strPolarityLabelFontSize: 20, //font size for polarity labels
+  iSouthPolarityFontColor: 'rgba(60, 69, 245, 1)', //font color for S polarity label
+  iNorthPolarityFontColor: 'rgba(245, 60, 60, 1)', //font color for S polarity label
 
   //keyboard bindings
   cSizeDown: 'a', //set the button to decrease size
