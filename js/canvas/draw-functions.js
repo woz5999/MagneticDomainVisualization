@@ -1,10 +1,6 @@
-var Config = require("../config/user-config");
-var Global = require("../config/global");
-var Utils = require("../utils");
-
 var DrawFunctions = {
-    //function to draw a line
-    drawLine: function(iStartX, iStartY, iEndX, iEndY) {
+    // function to draw a line
+    drawLine: function (iStartX, iStartY, iEndX, iEndY) {
         Global.ctxContext.beginPath();
         Global.ctxContext.moveTo(iStartX, iStartY);
         Global.ctxContext.lineTo(iEndX, iEndY);
@@ -12,8 +8,8 @@ var DrawFunctions = {
         Global.ctxContext.stroke();
     },
 
-    //function to draw a filled circle
-    drawCircle: function(x, y, radius, color) {
+    // function to draw a filled circle
+    drawCircle: function (x, y, radius, color) {
         Global.ctxContext.beginPath();
         Global.ctxContext.arc(x, y, radius, 0, Utils.Circle, true);
         Global.ctxContext.closePath();
@@ -21,18 +17,18 @@ var DrawFunctions = {
         Global.ctxContext.fill();
     },
 
-    //function to set the canvas text
-    setText: function(fontColor, font, textAlign, textBaseline) {
+    // function to set the canvas text
+    setText: function (fontColor, font, textAlign, textBaseline) {
         Global.ctxContext.fillStyle = fontColor;
         Global.ctxContext.font = font;
         Global.ctxContext.textAlign = textAlign;
         Global.ctxContext.textBaseline = textBaseline;
     },
 
-    //function to set the canvas shadow
-    setShadow: function(bShadow) {
-        if(bShadow) {
-            Global.ctxContext.shadowBlur =Config.iShadowSize;
+    // function to set the canvas shadow
+    setShadow: function (bShadow) {
+        if (bShadow) {
+            Global.ctxContext.shadowBlur = Config.iShadowSize;
             Global.ctxContext.shadowColor = Config.iShadowColor;
         } else {
             Global.ctxContext.shadowBlur = 0;
@@ -41,3 +37,7 @@ var DrawFunctions = {
 };
 
 module.exports = DrawFunctions;
+
+var Config = require("../config/user-config");
+var Global = require("../config/global");
+var Utils = require("../utils");

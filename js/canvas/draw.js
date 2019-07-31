@@ -1,55 +1,44 @@
-var CanvasSetup = require("./canvas-setup");
-var Config = require("../config/user-config");
-var DrawFunctions = require("./draw-functions");
-var FieldLines = require("../objects/field-lines");
-var Global = require("../config/global");
-var Graph = require("../objects/graph");
-var Particles = require("../objects/particles");
-var Speedometer = require("../objects/speedometer");
-
 var Draw = {
-    //function to draw everything
+    // function to draw everything
     draw: function () {
-        //check if the visualization is turned on
-        if (Global.bOn) {
-            //clear the canvas
-            Global.ctxContext.clearRect(0, 0,
-                Global.iCanvasWidth, Global.iCanvasHeight);
+        // check if the visualization is turned on
+        if (Global.bVisualizationEnabled) {
+            CanvasSetup.clearCanvas();
 
-            //determine if the canvas dimensions have changed
-            if (Global.iCanvasHeight !=
-                Math.trunc(document.querySelector('#particleCanvas').scrollHeight) ||
-                Global.iCanvasWidth !=
-                Math.trunc(document.querySelector('#particleCanvas').scrollWidth)) {
+            // determine if the canvas dimensions have changed
+            if (CanvasSetup.canvasSizeChanged()) {
 
-                //reset canvas variables
+                // reset canvas
                 CanvasSetup.setCanvasVariables();
-
-                //reset the particle array
-                Particles.arrParticles = [];
-                Particles.addParticles();
+                Atoms.addAtoms();
             }
 
             if (Config.bFieldLines) {
                 FieldLines.drawFieldLines();
             }
-            //iterate through particle array
-            for (i = 0; i < Particles.arrParticles.length; i++) {
-                //flip flop
-                Particles.flip();
 
-                //draw the current particle
-                var particle = Particles.arrParticles[i];
-                particle.draw();
-            }
+            Variables.update();
+
+            Atoms.refresh();
+
             if (Config.bSpeedometer) {
                 Speedometer.drawSpeedometer();
             }
+
             if (Config.bGraph) {
                 Graph.drawGraph();
             }
-        } //end check on/off if
+        }
     },
 };
 
 module.exports = Draw.draw;
+
+var CanvasSetup = require("./canvas-setup");
+var Config = require("../config/user-config");
+var FieldLines = require("../objects/field-lines");
+var Global = require("../config/global");
+var Graph = require("../objects/graph");
+var Atoms = require("../objects/atoms");
+var Speedometer = require("../objects/speedometer");
+var Variables = require("../model/variables");

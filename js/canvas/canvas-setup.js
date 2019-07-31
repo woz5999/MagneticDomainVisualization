@@ -1,50 +1,58 @@
-var Config = require("../config/user-config");
-var Global = require("../config/global");
-var InterfaceUpdates = require("../interface/interface-updates");
-
 var CanvasSetup = {
-    //function to construct canvas and assign variables based on its parameters
+    // function to construct canvas and assign variables based on its parameters
     setupCanvas: function () {
         var cCanvas = document.querySelector('#particleCanvas');
 
-        //check if a canvas was found and if it has context
+        // check if a canvas was found and if it has context
         if (cCanvas && cCanvas.getContext) {
-            //retrieve the canvas context
+            // retrieve the canvas context
             Global.ctxContext = cCanvas.getContext('2d');
 
-            //set the composite operation
+            // set the composite operation
             Global.ctxContext.globalCompositeOperation = "source-over";
 
-            //set canvas variables
+            // set canvas variables
             CanvasSetup.setCanvasVariables();
         }
     },
 
-    //function to dynamically set canvas variables based on canvas size
+    // function to clear the canvas
+    clearCanvas: function () {
+        Global.ctxContext.clearRect(0, 0, Global.iCanvasWidth, Global.iCanvasHeight);
+    },
+
+    // function that returns true if the canvas has been resized
+    canvasSizeChanged: function () {
+        return (Global.iCanvasHeight != Math.trunc(document.querySelector('#particleCanvas').scrollHeight) ||
+            Global.iCanvasWidth != Math.trunc(document.querySelector('#particleCanvas').scrollWidth)
+        );
+    },
+
+    // function to dynamically set canvas variables based on canvas size
     setCanvasVariables: function () {
-        //store the canvas dimensions
+        // store the canvas dimensions
         Global.iCanvasHeight = Math.trunc(document.querySelector('#particleCanvas').scrollHeight);
         Global.iCanvasWidth = Math.trunc(document.querySelector('#particleCanvas').scrollWidth);
-        console.log('width: ' + Global.iCanvasWidth);
-        console.log('height: ' + Global.iCanvasHeight);
+
         Global.ctxContext.canvas.height = Global.iCanvasHeight;
         Global.ctxContext.canvas.width = Global.iCanvasWidth;
 
-        //store the center of the canvas
+        // store the center of the canvas
         Global.iCanvasCenterX = Math.floor(Global.iCanvasWidth / 2);
         Global.iCanvasCenterY = Math.floor(Global.iCanvasHeight / 2);
 
-        //store the center point of the particle
+        // store the center point of the particle
         Global.iParticleCenterX = Global.iCanvasCenterX;
         Global.iParticleCenterY = Global.iCanvasCenterY;
 
-        //save calculations by saving the diameter of the particle
-        Global.iParticleDiameter = Config.iParticleRadius * 2;
+        // save calculations by saving the diameter of the particle
+        Global.iParticleDiameter = Config.iAtomRadius * 2;
+        Global.iParticleTotalWidth = Global.iParticleDiameter + Config.iAtomSpacing;
     },
 
-    //function to dynamically set relevant parameters
+    // function to dynamically set relevant parameters
     setParameters: function (iValue, obj, strParam) {
-        //determine if the param is a min or a max
+        // determine if the param is a min or a max
         if (strParam.indexOf('Min') != -1) {
             obj.min = iValue;
         } else if (strParam.indexOf('Max') != -1) {
@@ -54,3 +62,6 @@ var CanvasSetup = {
 };
 
 module.exports = CanvasSetup;
+
+var Config = require("../config/user-config");
+var Global = require("../config/global");

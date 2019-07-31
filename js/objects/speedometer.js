@@ -1,25 +1,20 @@
-var Config = require("../config/user-config");
-var DrawFunctions = require("../canvas/draw-functions");
-var Global = require("../config/global");
-var Utils = require("../utils");
-
 var Speedometer = {
-    //function to draw the dial gauge
-    drawSpeedometer: function() {
+    // function to draw the dial gauge
+    drawSpeedometer: function () {
         var iXOffset, iYOffset;
 
-        //calcuate the radius
-        var iSpeedometerRadius =Config. iSpeedometerDiameter / 2;
+        // calcuate the radius
+        var iSpeedometerRadius = Config.iSpeedometerDiameter / 2;
 
-        //set the center of the speedometer
-        //basically just a lot of work to move it inside of the field line arrows
+        // set the center of the speedometer
+        // basically just a lot of work to move it inside of the field line arrows
         var iSpeedometerCenterX = Global.iCanvasWidth -
-            (Config.iSpeedometerDiameter /2) -
+            (Config.iSpeedometerDiameter / 2) -
             (Config.iArrowSize * Config.iArrowSize) - Config.iArrowSize;
-        var iSpeedometerCenterY =  Global.iCanvasHeight -
+        var iSpeedometerCenterY = Global.iCanvasHeight -
             (Config.strLabelFontSize * 2);
 
-        //draw the main speedometer half-circle
+        // draw the main speedometer half-circle
         Global.ctxContext.fillStyle = Config.iSpeedometerBackgroundColor;
         Global.ctxContext.beginPath();
         Global.ctxContext.arc(iSpeedometerCenterX, iSpeedometerCenterY,
@@ -27,98 +22,103 @@ var Speedometer = {
         Global.ctxContext.closePath();
         Global.ctxContext.fill();
 
-        //draw black outline
+        // draw black outline
         Global.ctxContext.fillStyle = 'rgba(0, 0, 0, 1)';
         Global.ctxContext.stroke();
 
-        //draw the center circle
+        // draw the center circle
         DrawFunctions.drawCircle(iSpeedometerCenterX,
             iSpeedometerCenterY,
             Config.iSpeedometerDiameter / 25,
             'rgba(0, 0, 0, 1)');
 
-        //determine if the needle should be drawn
-        if(Global.iStrength > 0) {
-            //set the line color
+        // determine if the needle should be drawn
+        if (Variables.getStrengthValue() > 0) {
+            // set the line color
             Global.ctxContext.strokeStyle = 'rgba(0, 0, 0, 1)';
 
-            //get the rotation for the needle
-            var iRotation = Math.abs(Math.PI +
-                (Global.iStrength / (Math.PI * 10)));
+            // get the rotation for the needle
+            var iSpin = Math.abs(Math.PI +
+                (Variables.getStrengthValue() / (Math.PI * 10)));
 
-            //save the current context state
+            // save the current context state
             Global.ctxContext.save();
 
-            //normalize to the center of the dial
+            // normalize to the center of the dial
             Global.ctxContext.translate(
                 iSpeedometerCenterX, iSpeedometerCenterY);
 
-            //rotate the canvas
-            Global.ctxContext.rotate(iRotation);
+            // rotate the canvas
+            Global.ctxContext.rotate(iSpin);
 
-            //draw the needle
+            // draw the needle
             DrawFunctions.drawLine(
                 0, 0, (Config.iSpeedometerDiameter / 2) - 5, 0);
 
-            //fill the arrow
+            // fill the arrow
             Global.ctxContext.stroke();
 
-            //restore the canvas
+            // restore the canvas
             Global.ctxContext.restore();
 
-            //calculate the distance to move the labels from center
+            // calculate the distance to move the labels from center
             iXOffset = Config.iSpeedometerDiameter / 3.5;
-            iYOffset = Global.iSpeedLabelSize / 1.5;
+            iYOffset = Config.strLabelFontSize / 1.5;
 
-            //set the text information for the dial labels
+            // set the text information for the dial labels
             DrawFunctions.setText(Config.iGaugeFontColor,
                 Config.strGaugeFont,
                 'center',
                 'bottom');
 
-            //draw the graph labels
+            // draw the graph labels
             Global.ctxContext.fillText(Config.strGaugeLeftLabel,
                 iSpeedometerCenterX - iXOffset,
-                 iSpeedometerCenterY - iYOffset, iSpeedometerRadius);
+                iSpeedometerCenterY - iYOffset, iSpeedometerRadius);
             Global.ctxContext.fillText(Config.strGaugeRightLabel,
                 iSpeedometerCenterX + iXOffset - 7,
                 iSpeedometerCenterY - iYOffset, iSpeedometerRadius);
         } else {
-            //calculate the distance to move the labels from center
+            // calculate the distance to move the labels from center
             iXOffset = Config.iSpeedometerDiameter / 3.5;
-            iYOffset = Global.iSpeedLabelSize / 1.5;
+            iYOffset = Config.strLabelFontSize / 1.5;
 
-            //set the text information for the dial labels
+            // set the text information for the dial labels
             DrawFunctions.setText(Config.iGaugeOffFontColor,
                 Config.strGaugeOffFont,
                 'center',
                 'bottom');
 
-            //draw the graph labels
+            // draw the graph labels
             Global.ctxContext.fillText(
                 Config.strGaugeOffLabel, iSpeedometerCenterX,
                 iSpeedometerCenterY - (iYOffset * 3), iSpeedometerRadius);
-        }//end check draw needle else
+        }
 
-        //set the color for the gauge title
+        // set the color for the gauge title
         Global.ctxContext.fillStyle = Config.iGaugeTitleBackgroundColor;
 
-        //draw background for gauge title
+        // draw background for gauge title
         Global.ctxContext.fillRect(
             iSpeedometerCenterX - Config.iSpeedometerDiameter / 2,
             iSpeedometerCenterY + iYOffset,
             Config.iSpeedometerDiameter, iYOffset * 2);
 
-        //set the text information for the dial title
+        // set the text information for the dial title
         DrawFunctions.setText(Config.iGaugeTitleFontColor,
             Config.strGaugeTitleFont,
-             'center',
-             'bottom');
+            'center',
+            'bottom');
 
-        //draw the graph title
+        // draw the graph title
         Global.ctxContext.fillText(Config.strGaugeTitle, iSpeedometerCenterX,
             iSpeedometerCenterY + (iYOffset * 3), iSpeedometerRadius * 2);
-    }//end drawSpeedometer
+    }
 };
 
 module.exports = Speedometer;
+
+var Config = require("../config/user-config");
+var DrawFunctions = require("../canvas/draw-functions");
+var Global = require("../config/global");
+var Variables = require("../model/variables");
