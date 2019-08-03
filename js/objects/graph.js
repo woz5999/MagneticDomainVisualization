@@ -36,7 +36,7 @@ var Graph = {
             Global.ctxContext.strokeStyle = Config.iGraphOutlineColor;
             Global.ctxContext.strokeRect(iGraphCenterX, iGraphCenterY, iWidth, iHeight);
 
-            this.drawArrow(iGraphCenterX + iWidth, iGraphCenterY, Config.iGraphThickness);
+            this.drawArrow(iGraphCenterX + iWidth, iGraphCenterY, Config.iGraphThickness * Math.sign(Variables.getMagnetization()));
         }
 
         this.drawLabels(iGraphCenterX, iGraphCenterY, iGraphWidthMax);
@@ -45,12 +45,9 @@ var Graph = {
     drawArrow: function (x, y, iThickness) {
         // draw an arrow head on the graph
         Global.ctxContext.beginPath();
-        Global.ctxContext.moveTo(x,
-            y + (Config.iGraphThickness * 2.5));
-        Global.ctxContext.lineTo(x + (iThickness * 2),
-            y + Config.iGraphThickness);
-        Global.ctxContext.lineTo(x,
-            y - (Config.iGraphThickness));
+        Global.ctxContext.moveTo(x, y + (Config.iGraphThickness * 2.5));
+        Global.ctxContext.lineTo(x - (iThickness * 2), y + Config.iGraphThickness);
+        Global.ctxContext.lineTo(x, y - Config.iGraphThickness);
         Global.ctxContext.closePath();
         Global.ctxContext.fill();
         Global.ctxContext.stroke();
@@ -63,23 +60,19 @@ var Graph = {
         Global.ctxContext.strokeStyle = 'rgba(0, 0, 0, 1)';
 
         // set the dimensions for the labels
-        var iLabelStart = x - (maxWidth / 2);
-        var iLabelEnd = x + (maxWidth / 2) - iGraphSpacing;
-        var iLabelY = y + 12;
+        var iLabelStart = x - (Config.strLabelFontSize / 2 * Config.strGraphTitle.length);
+        var iLabelEnd = x + (Config.strLabelFontSize / 2 * Config.strGraphTitle.length);
+        var iLabelY = y + (Config.strLabelFontSize * 2) + 10;
+        var labelFont = Config.strPolarityLabelFontSize + 'px' + Config.strGraphFont;
 
         // set the text information for the graph labels
-        DrawFunctions.setText(Config.iGraphFontColor,
-            (Config.strLabelFontSize) + 'px' + Config.strGraphFont,
-            'center',
-            'bottom');
+        DrawFunctions.setText(Config.iGraphFontColor, labelFont, 'center', 'bottom');
 
         if (Config.strGraphTitle) {
-            Global.ctxContext.fillText(Config.strGraphTitle,
-                x, y + (Config.strLabelFontSize * 2));
+            Global.ctxContext.fillText(Config.strGraphTitle, x, iLabelY);
         }
         if (Config.strGraphCenterLabel) {
-            Global.ctxContext.fillText(Config.strGraphCenterLabel, x,
-                y + (iGraphSpacing / 2));
+            Global.ctxContext.fillText(Config.strGraphCenterLabel, x, y + (iGraphSpacing / 2));
         }
 
         if (Math.sign(Variables.getPolarity()) == 1) {
@@ -92,32 +85,19 @@ var Graph = {
         }
 
         if (strLeftLabel == 'S') {
-            DrawFunctions.setText(Config.iSouthPolarityFontColor,
-                (Config.strPolarityLabelFontSize) + 'px' + Config.strGraphFont,
-                'center',
-                'bottom');
+            DrawFunctions.setText(Config.iSouthPolarityFontColor, labelFont, 'center', 'bottom');
         } else {
-            DrawFunctions.setText(Config.iNorthPolarityFontColor,
-                (Config.strPolarityLabelFontSize) + 'px' + Config.strGraphFont,
-                'center',
-                'bottom');
+            DrawFunctions.setText(Config.iNorthPolarityFontColor, labelFont, 'center', 'bottom');
         }
-        Global.ctxContext.fillText(strLeftLabel,
-            iLabelStart, iLabelY);
+
+        Global.ctxContext.fillText(strLeftLabel, iLabelStart, iLabelY);
 
         if (strRightLabel == 'S') {
-            DrawFunctions.setText(Config.iSouthPolarityFontColor,
-                (Config.strPolarityLabelFontSize) + 'px' + Config.strGraphFont,
-                'center',
-                'bottom');
+            DrawFunctions.setText(Config.iSouthPolarityFontColor, labelFont, 'center', 'bottom');
         } else {
-            DrawFunctions.setText(Config.iNorthPolarityFontColor,
-                (Config.strPolarityLabelFontSize) + 'px' + Config.strGraphFont,
-                'center',
-                'bottom');
+            DrawFunctions.setText(Config.iNorthPolarityFontColor, labelFont, 'center', 'bottom');
         }
-        Global.ctxContext.fillText(strRightLabel,
-            iLabelEnd, iLabelY);
+        Global.ctxContext.fillText(strRightLabel, iLabelEnd, iLabelY);
     },
 };
 

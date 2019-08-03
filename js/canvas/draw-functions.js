@@ -9,12 +9,15 @@ var DrawFunctions = {
     },
 
     // function to draw a filled circle
-    drawCircle: function (x, y, radius, color) {
+    drawCircle: function (x, y, radius, color, outlineColor, outlineWidth) {
         Global.ctxContext.beginPath();
         Global.ctxContext.arc(x, y, radius, 0, Utils.Circle, true);
         Global.ctxContext.closePath();
         Global.ctxContext.fillStyle = color;
         Global.ctxContext.fill();
+        Global.ctxContext.strokeStyle = outlineColor;
+        Global.ctxContext.lineWidth = outlineWidth;
+        Global.ctxContext.stroke();
     },
 
     // function to set the canvas text

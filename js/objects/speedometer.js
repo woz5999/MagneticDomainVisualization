@@ -27,10 +27,9 @@ var Speedometer = {
         Global.ctxContext.stroke();
 
         // draw the center circle
-        DrawFunctions.drawCircle(iSpeedometerCenterX,
-            iSpeedometerCenterY,
-            Config.iSpeedometerDiameter / 25,
-            'rgba(0, 0, 0, 1)');
+        DrawFunctions.drawCircle(iSpeedometerCenterX, iSpeedometerCenterY, Config.iSpeedometerDiameter / 25,
+            'rgb(0, 0, 0)', '', 0
+        );
 
         // determine if the needle should be drawn
         if (Variables.getStrengthValue() > 0) {

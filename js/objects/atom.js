@@ -10,7 +10,9 @@ Atom = function (x, y, iSpin) {
     };
 
     this.drawAtom = function (x, y, iSpin) {
-        DrawFunctions.drawCircle(x, y, Config.iAtomRadius, Config.iAtomColor);
+        DrawFunctions.drawCircle(x, y, Config.iAtomRadius, Config.iAtomColor,
+            Config.iAtomBorderColor, Config.iAtomBorderWidth
+        );
 
         var arrow = new Arrow.arrow(x, y, iSpin);
         arrow.draw();

@@ -37,6 +37,14 @@ var InterfaceUpdates = {
             case 'rnStrength':
                 // set the activity level for the strength
                 Variables.setStrengthValue(iValue);
+
+                if (iValue == 0) {
+                    // if the field is off, disable polarity button
+                    ButtonHandlers.disableButton(document.querySelector('#btnPolarity'), true);
+                } else {
+                    // if the field is off, disable polarity button
+                    ButtonHandlers.disableButton(document.querySelector('#btnPolarity'), false);
+                }
                 break;
         }
 
@@ -47,6 +55,7 @@ var InterfaceUpdates = {
 
 module.exports = InterfaceUpdates;
 
-var Global = require("../config/global");
 var Atoms = require("../objects/atoms");
+var ButtonHandlers = require("./button-handlers");
+var Global = require("../config/global");
 var Variables = require("../model/variables");

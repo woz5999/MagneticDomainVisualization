@@ -1,12 +1,13 @@
 var UserConfig = {
   // customizeable parameters
   iArrowSize: 4, // size of the arrow arrows
-  iArrowWidth: 1.5, // width of the arrow
+  iArrowWidth: 8, // width of the arrow
   iDrawInterval: 255, // time between redraws
   iGraphThickness: 10, // height of the activity bar graph
   iGraphWidth: 80, // width of graph, % of canvas width
   iAtomRadius: 8, // pixels
   iAtomSpacing: 1.5, // spacing between atoms
+  iAtomBorderWidth: 1, // width of atom outline
   iSpeedometerDiameter: 180, // diamter of the speedometer dial in pixels
 
   // range settings
@@ -31,12 +32,13 @@ var UserConfig = {
   // colors
   iArrowColorNorth: 'rgb(245, 60, 60)', // color of the polarity arrow when facing north
   iArrowColorSouth: 'rgb(60, 70, 245)', // color of the polarity arrow when facing south
-  iFieldLineColor: 'rgba(50, 50, 50, 1)', // color of field lines
+  iFieldLineColor: 'rgba(50, 50, 50, .5)', // color of field lines
   iGaugeTitleBackgroundColor: 'rgba(255, 255, 255, 0)', // background color for gauge title
   iGraphColorNorth: 'rgb(245, 60, 60)', // color of the bar graph when facing north
   iGraphColorSouth: 'rgb(60, 70, 245)', // color of the bar graph when facing south
   iGraphOutlineColor: 'rgba(0, 0, 0, 1)', // outline color for graph
-  iAtomColor: 'rgba(200, 200, 215, 1)', // fillcolor of atoms
+  iAtomColor: 'rgba(200, 200, 215, 1)', // fill color of atoms
+  iAtomBorderColor: 'rgb(0, 0, 0, .5)', // border color of atoms
   iSpeedometerBackgroundColor: 'rgba(228, 228, 228, 1)', // color of speedometer background
 
   // font settings

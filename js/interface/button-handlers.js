@@ -2,28 +2,19 @@ var ButtonHandlers = {
     // function to play or pause the visualization
     pauseClick: function () {
         // set elements
-        ButtonHandlers.disableButton(
-            document.querySelector('#rnSize'), Global.bVisualizationEnabled);
-        ButtonHandlers.disableButton(
-            document.querySelector('#rnStrength'), Global.bVisualizationEnabled);
-        ButtonHandlers.disableButton(
-            document.querySelector('#rnTemp'), Global.bVisualizationEnabled);
-        ButtonHandlers.disableButton(
-            document.querySelector('#btnMagnet'), Global.bVisualizationEnabled);
-        ButtonHandlers.disableButton(
-            document.querySelector('#btnPolarity'), Global.bVisualizationEnabled);
+        ButtonHandlers.disableButton(document.querySelector('#rnSize'), Global.bVisualizationEnabled);
+        ButtonHandlers.disableButton(document.querySelector('#rnStrength'), Global.bVisualizationEnabled);
+        ButtonHandlers.disableButton(document.querySelector('#rnTemp'), Global.bVisualizationEnabled);
+        ButtonHandlers.disableButton(document.querySelector('#btnMagnet'), Global.bVisualizationEnabled);
+        ButtonHandlers.disableButton(document.querySelector('#btnPolarity'), Global.bVisualizationEnabled);
 
         // set the butotn text
         if (Global.bVisualizationEnabled) {
-            document.querySelector('#btnPause').innerHTML =
-                'Continue';
-            document.querySelector('#btnPause').title =
-                'Continue the visualization';
+            document.querySelector('#btnPause').innerHTML = 'Continue';
+            document.querySelector('#btnPause').title = 'Continue the visualization';
         } else {
-            document.querySelector('#btnPause').innerHTML =
-                'Pause';
-            document.querySelector('#btnPause').title =
-                'Pause the visualization';
+            document.querySelector('#btnPause').innerHTML = 'Pause';
+            document.querySelector('#btnPause').title = 'Pause the visualization';
         }
 
         // toggle
@@ -39,9 +30,16 @@ var ButtonHandlers = {
             // store the current value of the slider
             Global.iStrengthStoredVal = Variables.getStrengthValue();
             rnStrength.value = 0;
+
+            // if the field is off, disable polarity button
+            ButtonHandlers.disableButton(document.querySelector('#btnPolarity'), true);
+
         } else {
             // restore the value of the slider
             rnStrength.value = Global.iStrengthStoredVal;
+
+            // if the field is off, disable polarity button
+            ButtonHandlers.disableButton(document.querySelector('#btnPolarity'), false);
         }
 
         // set the magnetic field
