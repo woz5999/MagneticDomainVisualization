@@ -10,8 +10,8 @@ var ButtonHandlers = {
 
         // set the butotn text
         if (Global.bVisualizationEnabled) {
-            document.querySelector('#btnPause').innerHTML = 'Continue';
-            document.querySelector('#btnPause').title = 'Continue the visualization';
+            document.querySelector('#btnPause').innerHTML = 'Resume';
+            document.querySelector('#btnPause').title = 'Resume the visualization';
         } else {
             document.querySelector('#btnPause').innerHTML = 'Pause';
             document.querySelector('#btnPause').title = 'Pause the visualization';

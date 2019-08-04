@@ -4,22 +4,10 @@ var FieldLines = {
         // make sure the field strength is not 0
         if (Variables.getStrengthValue() !== 0) {
             // set the line count
-            var iLineCount = Math.ceil(Variables.getStrengthValue() / 2);
-
-            // set the maximum line density
-            var iMaxDensity = Global.iCanvasHeight -
-                (Global.iCanvasHeight / 1.1);
-
-            // sanity check line density
-            if (iLineCount > iMaxDensity) {
-                iLineCount = iMaxDensity;
-            }
+            var iLineCount = (Global.iCanvasHeight / 20) * (Variables.getStrengthValue() / 100);
 
             // determine how far to space the lines
             var iSpacing = Math.floor(Global.iCanvasHeight / iLineCount);
-
-            // get half of the line count
-            var iTempLineCount = iLineCount / 2;
 
             // set the line color
             Global.ctxContext.strokeStyle = Config.iFieldLineColor;
@@ -42,13 +30,13 @@ var FieldLines = {
             }
 
             // determine if the center line should be drawn
-            if (iTempLineCount > 0) {
+            if (iLineCount != 0) {
                 // draw the center line
                 this.drawFieldLine(Global.iParticleCenterY, iHeight, iLength);
             }
 
             // iterate field lines for the strength, drawing from the center out
-            for (i = 1; i <= iTempLineCount; i++) {
+            for (i = 1; i <= iLineCount / 2; i++) {
                 var iCurrentSpacing = iSpacing * i;
 
                 // calculate the starting location for the upper and  lower lines
