@@ -1,7 +1,5 @@
 runtime: python27
 api_version: 1
-version: v1
-application: magnetic-domain-viz
 threadsafe: true
 
 skip_files:
@@ -13,11 +11,16 @@ skip_files:
   - Dockerfile
   - node_modules
   - scss
+  - .git
+  - Makefile
+  - .dockerignore
+  - .DS_Store
+  - app.yaml
 
 handlers:
 - url: /
-  static_files: MagneticDomainVisualization.html
-  upload: MagneticDomainVisualization.html
+  static_files: MagneticParticleVisualization.html
+  upload: MagneticParticleVisualization.html
 
 - url: /css/(.*\.(css))$
   static_files: css/\1

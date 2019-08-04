@@ -1,4 +1,4 @@
-#[Magnetic Domain Visualization](https://magnetic-domain-viz.appspot.com/)
+# [Magnetic Particle Visualization](https://magnetic-domain-viz.appspot.com/)
 
 This is a project I created for a colleague working in education.
 

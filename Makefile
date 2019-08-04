@@ -14,7 +14,10 @@ run:
 	docker run -d --name magviz -p 8080:80 magviz
 	@echo Access visualization on http://localhost:8080
 
-make build-run: build run
+build-run: build run
 
 docker-distrib:
 	docker build --build-arg JS_BUNDLE=bundle.min.js -t magviz .
+
+deploy:
+	gcloud app deploy --quiet app.yaml
