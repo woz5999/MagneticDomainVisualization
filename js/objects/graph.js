@@ -70,7 +70,7 @@ var Graph = {
 
         // draw a background behind the labels
         Global.ctxContext.fillStyle = Config.iGraphLabelBackgroundColor;
-        Global.ctxContext.fillRect(iLabelStart - iLabelBuffer, y + Config.strLabelFontSize + 5, iLabelWidth * 2 + iLabelBuffer * 2, iLabelHeight);
+        Global.ctxContext.fillRect(iLabelStart - iLabelBuffer, y + Config.strLabelFontSize + 2, iLabelWidth * 2 + iLabelBuffer * 2, iLabelHeight);
 
         // set the text information for the graph labels
         DrawFunctions.setText(Config.iGraphFontColor, labelFont, 'center', 'bottom');
