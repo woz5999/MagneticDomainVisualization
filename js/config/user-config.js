@@ -6,7 +6,7 @@ var UserConfig = {
   iGraphThickness: 10, // height of the activity bar graph
   iGraphWidth: 80, // width of graph, % of canvas width
   iAtomRadius: 8, // pixels
-  iAtomSpacing: 1.5, // spacing between atoms
+  iAtomSpacing: 2.5, // spacing between atoms
   iAtomBorderWidth: 1, // width of atom outline
   iSpeedometerDiameter: 180, // diamter of the speedometer dial in pixels
 
