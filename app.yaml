@@ -29,3 +29,7 @@ handlers:
 - url: /js/(.*\.(js))$
   static_files: js/\1
   upload: js/.*\.(js)
+
+- url: /resources/(.*)$
+  static_files: resources/\1
+  upload: resources/.*
