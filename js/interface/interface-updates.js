@@ -46,7 +46,7 @@ var InterfaceUpdates = {
                 } else if (iValue > half) {
                     displayValue = 'Stronger';
                 } else if (iValue == half) {
-                    displayValue = '';
+                    displayValue = 'Strong';
                 }
 
                 // set the activity level for the strength
