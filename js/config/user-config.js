@@ -37,6 +37,7 @@ var UserConfig = {
   iGraphColorNorth: 'rgb(245, 60, 60)', // color of the bar graph when facing north
   iGraphColorSouth: 'rgb(60, 70, 245)', // color of the bar graph when facing south
   iGraphOutlineColor: 'rgba(0, 0, 0, 1)', // outline color for graph
+  iGraphLabelBackgroundColor: 'rgba(255, 255, 255, .75)', // background color for graph labels
   iAtomColor: 'rgba(200, 200, 215, 1)', // fill color of atoms
   iAtomBorderColor: 'rgb(0, 0, 0, .5)', // border color of atoms
   iSpeedometerBackgroundColor: 'rgba(228, 228, 228, 1)', // color of speedometer background

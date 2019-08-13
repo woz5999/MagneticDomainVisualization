@@ -60,10 +60,17 @@ var Graph = {
         Global.ctxContext.strokeStyle = 'rgba(0, 0, 0, 1)';
 
         // set the dimensions for the labels
-        var iLabelStart = x - (Config.strLabelFontSize / 2 * Config.strGraphTitle.length);
-        var iLabelEnd = x + (Config.strLabelFontSize / 2 * Config.strGraphTitle.length);
-        var iLabelY = y + (Config.strLabelFontSize * 2) + 10;
+        var iLabelWidth = (Config.strLabelFontSize / 2 * Config.strGraphTitle.length);
+        var iLabelStart = x - iLabelWidth;
+        var iLabelEnd = x + iLabelWidth;
+        var iLabelBuffer = (Config.strLabelFontSize + 10);
+        var iLabelHeight = Config.strLabelFontSize * 2;
+        var iLabelY = y + iLabelHeight + 10;
         var labelFont = Config.strPolarityLabelFontSize + 'px' + Config.strGraphFont;
+
+        // draw a background behind the labels
+        Global.ctxContext.fillStyle = Config.iGraphLabelBackgroundColor;
+        Global.ctxContext.fillRect(iLabelStart - iLabelBuffer, y + Config.strLabelFontSize + 5, iLabelWidth * 2 + iLabelBuffer * 2, iLabelHeight);
 
         // set the text information for the graph labels
         DrawFunctions.setText(Config.iGraphFontColor, labelFont, 'center', 'bottom');
