@@ -15,6 +15,7 @@ $heading-font: 18px;
 $title-font: 24px;
 
 $body-background-color: #87c3e7;
+$body-background-image: url("../resources/background.jpeg");
 $button-background-color: $white;
 $button-disabled-background-color: #eee;
 $button-disabled-color: #aaa;
@@ -37,6 +38,8 @@ canvas {
 
 body {
   background-color: $body-background-color;
+  background-image: $body-background-image;
+  background-size: cover;
   font-family: sans-serif;
   font-size: $default-font;
   text-align: center;
