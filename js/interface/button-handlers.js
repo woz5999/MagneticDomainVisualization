@@ -58,7 +58,7 @@ var ButtonHandlers = {
     },
 
     disableButton: function (button, disabled) {
-        button.disable = disabled;
+        button.disabled = disabled;
 
         if (disabled) {
             button.classList.add('disabled');
