@@ -15,6 +15,9 @@ $heading-font: 18px;
 $title-font: 36px;
 $title-font-color: $white;
 
+$slider-value-color: $white;
+$label-color: $white;
+
 $body-background-color: #87c3e7;
 $body-background-image: url("../resources/background.jpeg");
 $button-background-color: $white;
@@ -93,6 +96,14 @@ h1 a {
 
 .spacer {
   min-height: 16px;
+}
+
+.slider-value {
+  color: $slider-value-color
+}
+
+.label {
+  color: $label-color
 }
 
 .no-top-margin {
