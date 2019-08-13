@@ -2,6 +2,7 @@ var InterfaceUpdates = {
     // function to handle range changes
     rangeChange: function (caller) {
         var iValue = caller.value || this.value;
+        var displayValue = iValue;
         var strName = caller.id || this.id;
 
         // determine which slider was changed
@@ -35,6 +36,19 @@ var InterfaceUpdates = {
                 break;
 
             case 'rnStrength':
+                half = Config.iStrengthRangeMax / 2;
+                if (iValue == Config.iStrengthRangeMin) {
+                    displayValue = 'Weakest';
+                } else if (iValue == Config.iStrengthRangeMax) {
+                    displayValue = 'Strongest';
+                } else if (iValue < half) {
+                    displayValue = 'Weaker';
+                } else if (iValue > half) {
+                    displayValue = 'Stronger';
+                } else if (iValue == half) {
+                    displayValue = '';
+                }
+
                 // set the activity level for the strength
                 Variables.setStrengthValue(iValue);
 
@@ -49,7 +63,7 @@ var InterfaceUpdates = {
         }
 
         // update the interface
-        document.getElementById(strName + 'Value').innerHTML = iValue;
+        document.getElementById(strName + 'Value').innerHTML = displayValue;
     }
 };
 
@@ -58,4 +72,5 @@ module.exports = InterfaceUpdates;
 var Atoms = require("../objects/atoms");
 var ButtonHandlers = require("./button-handlers");
 var Global = require("../config/global");
+var Config = require("../config/user-config");
 var Variables = require("../model/variables");
