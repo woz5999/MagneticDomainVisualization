@@ -2,6 +2,9 @@ Atom = function (x, y, iSpin) {
     this.iSpin = iSpin;
     this.x = x;
     this.y = y;
+    this.iMagnetization = 0;
+    this.bMagnetizationChanged = false;
+    this.color = Config.iAtomColor;
 
     // class draw function
     this.draw = function () {
@@ -10,12 +13,28 @@ Atom = function (x, y, iSpin) {
     };
 
     this.drawAtom = function (x, y, iSpin) {
-        DrawFunctions.drawCircle(x, y, Config.iAtomRadius, Config.iAtomColor,
+        if (this.bMagnetizationChanged) {
+            this.color = Utils.updateAlpha(Config.iAtomColor, this.iMagnetization, Config.iParticleMinimumAlpha);
+        }
+
+        DrawFunctions.drawCircle(x, y, Config.iAtomRadius, this.color,
             Config.iAtomBorderColor, Config.iAtomBorderWidth
         );
 
         var arrow = new Arrow.arrow(x, y, iSpin);
         arrow.draw();
+    };
+
+    this.setMagnetization = function (deltaEnergy, probability) {
+        var iOldMagnetization = this.iMagnetization;
+        if (deltaEnergy <= 0) {
+            this.iMagnetization = 0;
+        } else {
+            this.iMagnetization = 1 - probability;
+        }
+        if (iOldMagnetization == this.iMagnetization) {
+            this.bMagnetizationChanged = true;
+        }
     };
 };
 
@@ -24,3 +43,4 @@ module.exports = Atom;
 var Arrow = require("./arrow");
 var Config = require("../config/user-config");
 var DrawFunctions = require("../canvas/draw-functions");
+var Utils = require("../utils");

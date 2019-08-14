@@ -70,7 +70,7 @@ var Variables = {
   },
 
   setTemperature: function (v) {
-    this.Temperature = parseInt(v);
+    this.Temperature = parseInt(v) / Config.iTemperatureModifier;
   },
 
   getTemperature: function () {
@@ -89,3 +89,4 @@ var Variables = {
 module.exports = Variables;
 
 var Calculations = require("./calculations");
+var Config = require("../config/user-config");

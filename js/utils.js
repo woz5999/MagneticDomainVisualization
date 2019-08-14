@@ -11,6 +11,13 @@ var Utils = {
         return -1;
     },
 
+    updateAlpha: function (color, newAlpha, minAlpha) {
+        if (newAlpha < minAlpha) {
+            newAlpha = minAlpha;
+        }
+        return color.substr(0, color.lastIndexOf(',') + 2) + newAlpha + ')';
+    },
+
     Circle: Math.PI * 2, // 2pi for drawing circles
 };
 

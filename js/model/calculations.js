@@ -92,7 +92,12 @@ var Calculations = {
     energy2 = this.energy(systemSpinWithFlip, iMagnetizationWithFlip);
     iDeltaEnergy = energy1 - energy2;
 
-    if (this.atomShouldFlip(iDeltaEnergy)) {
+    var flipProbability = this.flipProbability(iDeltaEnergy);
+
+    // set the particle magnetization
+    p.setMagnetization(iDeltaEnergy, flipProbability);
+
+    if (this.atomShouldFlip(iDeltaEnergy, flipProbability)) {
       // update the system vars affected by this flip
       Variables.incrementMagnetization(p.iSpin);
       Variables.incrementAdjacantSpinCount(adjacentSpinDelta);
@@ -104,14 +109,16 @@ var Calculations = {
 
   // determine if the possible change in energy is zero or less or if a random number is
   // less than the exponentional function of negative change in E divided by the temp
-  atomShouldFlip: function (deltaEnergy) {
+  flipProbability: function (deltaEnergy) {
+    return Math.exp(-deltaEnergy / Variables.getTemperature());
+  },
+
+  atomShouldFlip: function (deltaEnergy, P) {
     if (deltaEnergy <= 0) {
       return true;
     }
 
-    P = Math.exp(-deltaEnergy / Variables.getTemperature());
-
-    return Utils.random(0.0, 1.0) < P;
+    return P > Utils.random(0.0, 1.0);
   },
 };
 

@@ -41,6 +41,7 @@ var UserConfig = {
   iAtomColor: 'rgba(200, 200, 215, 1)', // fill color of atoms
   iAtomBorderColor: 'rgb(0, 0, 0, .5)', // border color of atoms
   iSpeedometerBackgroundColor: 'rgba(228, 228, 228, 1)', // color of speedometer background
+  iParticleMinimumAlpha: 0.20, // minimum alpha level to maintain when fading particles
 
   // font settings
   strLabelFontSize: 14, // font size for all labels
@@ -71,6 +72,7 @@ var UserConfig = {
 
   // tweaks
   iMagnetStrength: 500, // G?
+  iTemperatureModifier: 1000
 };
 
 module.exports = UserConfig;
