@@ -17,6 +17,13 @@ Atom = function (x, y, iSpin) {
             this.color = Utils.updateAlpha(Config.iAtomColor, this.iMagnetization, Config.iParticleMinimumAlpha);
         }
 
+        // draw an opaque white background behind the atoms
+        if (Config.iParticleMinimumAlpha < 1 || this.iMagnetization < 1) {
+            DrawFunctions.drawCircle(x, y, Config.iAtomRadius, 'rgba(255, 255, 255, 1)',
+                Config.iAtomBorderColor, Config.iAtomBorderWidth
+            );
+        }
+
         DrawFunctions.drawCircle(x, y, Config.iAtomRadius, this.color,
             Config.iAtomBorderColor, Config.iAtomBorderWidth
         );
