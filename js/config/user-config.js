@@ -17,7 +17,7 @@ var UserConfig = {
   iStrengthRangeMin: 0, // minimum field strength
   iStrengthRangeMax: 100, // maximum field strength
   iStrengthStart: 50, // field strength to starts with
-  iTemperatureRangeMax: 1100, // kelvin
+  iTemperatureRangeMax: 2000, // kelvin
   iTemperatureRangeMin: 0, // kelvin
   iTemperatureStart: 290, // temperature to start at, room temp
 
@@ -71,7 +71,7 @@ var UserConfig = {
   bFieldLines: true,
 
   // tweaks
-  iMagnetStrength: 500, // G?
+  iMagnetStrength: 0.25, // G?
   iTemperatureModifier: 1000
 };
 
