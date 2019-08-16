@@ -36,17 +36,21 @@ var InterfaceUpdates = {
                 break;
 
             case 'rnStrength':
-                half = Config.iStrengthRangeMax / 2;
-                if (iValue == Config.iStrengthRangeMin) {
+                sixth = Config.iStrengthRangeMax / 6;
+                if (iValue == 0) {
+                    displayValue = 'Off';
+                } else if (iValue < 5 || iValue == Config.iStrengthRangeMin) {
                     displayValue = 'Weakest';
+                } else if (iValue < sixth * 1.5) {
+                    displayValue = 'Weaker';
+                } else if (iValue < sixth * 3) {
+                    displayValue = 'Weak';
+                } else if (iValue < sixth * 4.5) {
+                    displayValue = 'Strong';
+                } else if (iValue < sixth * 6) {
+                    displayValue = 'Stronger';
                 } else if (iValue == Config.iStrengthRangeMax) {
                     displayValue = 'Strongest';
-                } else if (iValue < half) {
-                    displayValue = 'Weaker';
-                } else if (iValue > half) {
-                    displayValue = 'Stronger';
-                } else if (iValue == half) {
-                    displayValue = 'Strong';
                 }
 
                 // set the activity level for the strength
