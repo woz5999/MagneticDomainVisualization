@@ -71,8 +71,9 @@ var UserConfig = {
   bFieldLines: true,
 
   // tweaks
-  iMagnetStrength: 0.25, // G?
-  iTemperatureModifier: 1000
+  iMagnetStrength: 10,
+  iTemperatureModifier: 1000,
+  bShowTweaks: true
 };
 
 module.exports = UserConfig;

@@ -1,7 +1,7 @@
 var Calculations = {
   // function to calculate the global energy according to the ising model
   energy: function (iAdjacentSpinSum, iMagnetization) {
-    E = (-1 * Constants.J * iAdjacentSpinSum) - (Constants.iMoment * Variables.getH() * iMagnetization);
+    E = (-1 * Constants.getJ() * iAdjacentSpinSum) - (Constants.getMoment() * Variables.getH() * iMagnetization);
     return E;
   },
 
@@ -31,7 +31,7 @@ var Calculations = {
   },
 
   magneticFieldStrength: function () {
-    return Variables.getPolarity() * Config.iMagnetStrength * (Variables.getStrengthValue() / 100);
+    return Variables.getPolarity() * Variables.getStrengthModifier() * (Variables.getStrengthValue() / 100);
   },
 
   // function to get the combined spin of a atom's neighbords
@@ -114,8 +114,7 @@ var Calculations = {
   },
 
   weightedTemperature: function () {
-    // return Variables.getTemperature() / (Global.iAtomCount / Config.iTemperatureModifier);
-    return Variables.getTemperature() / Config.iTemperatureModifier;
+    return Variables.getTemperature() / Variables.getTemperaturehModifier();
   },
 
   atomShouldFlip: function (deltaEnergy, P) {
@@ -129,7 +128,6 @@ var Calculations = {
 
 module.exports = Calculations;
 
-var Config = require("../config/user-config");
 var Constants = require("./constants");
 var Global = require("../config/global");
 var Atoms = require("../objects/atoms");

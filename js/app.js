@@ -1,12 +1,27 @@
-var ButtonHandlers = require('./interface/button-handlers');
-var CanvasSetup = require('./canvas/canvas-setup');
-var Config = require('./config/user-config');
-var Draw = require('./canvas/draw');
-var Global = require('./config/global');
-var InterfaceUpdates = require('./interface/interface-updates');
-var Keyboard = require('./interface/keyboard-shortcuts');
-
 function init() {
+    // determine whether or not to show the tweak controls
+    if (Config.bShowTweaks) {
+        J = document.querySelector('#J');
+        H = document.querySelector('#H');
+        T = document.querySelector('#T');
+
+        // attach change events to the sliders
+        J.onchange = InterfaceUpdates.rangeChange;
+        H.onchange = InterfaceUpdates.rangeChange;
+        T.onchange = InterfaceUpdates.rangeChange;
+
+        J.value = Constants.J;
+        H.value = Config.iMagnetStrength;
+        T.value = Config.iTemperatureModifier;
+
+        // force the initial label display
+        InterfaceUpdates.rangeChange(J);
+        InterfaceUpdates.rangeChange(H);
+        InterfaceUpdates.rangeChange(T);
+
+        document.querySelector('#tweaks').classList.remove('hide');
+    }
+
     // grab the sliders
     rnTemp = document.querySelector('#rnTemp');
     rnSize = document.querySelector('#rnSize');
@@ -31,9 +46,6 @@ function init() {
         rnTemp.onchange = InterfaceUpdates.rangeChange;
         rnSize.onchange = InterfaceUpdates.rangeChange;
         rnStrength.onchange = InterfaceUpdates.rangeChange;
-
-        // grab the button
-        var btnPause = document.querySelector('#btnPause');
 
         // attach key press event to keyboard buttons
         document.onkeypress = Keyboard.keyPress.bind(Keyboard);
@@ -80,4 +92,15 @@ function init() {
         window.onresize = CanvasSetup.setupCanvas;
     }
 }
+
+var ButtonHandlers = require('./interface/button-handlers');
+var CanvasSetup = require('./canvas/canvas-setup');
+var Constants = require('./model/constants');
+var Config = require('./config/user-config');
+var Draw = require('./canvas/draw');
+var Global = require('./config/global');
+var InterfaceUpdates = require('./interface/interface-updates');
+var Keyboard = require('./interface/keyboard-shortcuts');
+var Variables = require('./model/variables');
+
 init();

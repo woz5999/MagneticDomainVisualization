@@ -1,6 +1,20 @@
 var Constants = {
-  J: -1, // strength of exchange interaction
-  iMoment: 1, // strength of spin-field interaction
+  J: -0.15, // strength of exchange interaction
+  moment: 1, // strength of spin-field interaction
+
+  getJ: function () {
+    if (!Config.bShowTweaks) {
+      return this.J;
+    }
+    return Variables.getJ();
+  },
+
+  getMoment: function () {
+    return this.moment;
+  }
 };
 
 module.exports = Constants;
+
+var Config = require('../config/user-config');
+var Variables = require('../model/variables');

@@ -84,6 +84,24 @@ var Variables = {
   getAdjacantSpinCount: function () {
     return this.AdjacantSpinCount;
   },
+
+  getStrengthModifier: function () {
+    if (!Config.bShowTweaks) {
+      return Config.iMagnetStrength;
+    }
+    return document.querySelector('#H').value;
+  },
+
+  getTemperaturehModifier: function () {
+    if (!Config.bShowTweaks) {
+      return Config.iTemperatureModifier;
+    }
+    return document.querySelector('#T').value;
+  },
+
+  getJ: function () {
+    return document.querySelector('#J').value;
+  }
 };
 
 module.exports = Variables;
