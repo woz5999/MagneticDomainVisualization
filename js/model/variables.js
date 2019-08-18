@@ -70,7 +70,7 @@ var Variables = {
   },
 
   setTemperature: function (v) {
-    this.Temperature = parseInt(v) / Config.iTemperatureModifier;
+    this.Temperature = parseInt(v);
   },
 
   getTemperature: function () {
