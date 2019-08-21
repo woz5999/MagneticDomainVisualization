@@ -20,4 +20,5 @@ docker-distrib: build-js
 	docker build --build-arg JS_BUNDLE=bundle.min.js -t magviz .
 
 deploy: build-js
+	gcloud config set project magnetic-particle-vis
 	gcloud app deploy --quiet app.yaml
