@@ -2,8 +2,6 @@ Atom = function (x, y, iSpin) {
     this.iSpin = iSpin;
     this.x = x;
     this.y = y;
-    this.iMagnetization = 0;
-    this.bMagnetizationChanged = false;
     this.color = Config.iAtomColor;
 
     // class draw function
@@ -13,9 +11,7 @@ Atom = function (x, y, iSpin) {
     };
 
     this.drawAtom = function (x, y, iSpin) {
-        if (this.bMagnetizationChanged) {
-            this.color = Utils.updateAlpha(Config.iAtomColor, this.iMagnetization, Config.iParticleMinimumAlpha);
-        }
+        this.color = Utils.updateAlpha(Config.iAtomColor, this.iMagnetization, Config.iParticleMinimumAlpha);
 
         // draw an opaque white background behind the atoms
         if (Config.iParticleMinimumAlpha < 1 || this.iMagnetization < 1) {
@@ -33,14 +29,10 @@ Atom = function (x, y, iSpin) {
     };
 
     this.setMagnetization = function (deltaEnergy, probability) {
-        var iOldMagnetization = this.iMagnetization;
         if (deltaEnergy <= 0) {
             this.iMagnetization = 0;
         } else {
             this.iMagnetization = 1 - probability;
-        }
-        if (iOldMagnetization == this.iMagnetization) {
-            this.bMagnetizationChanged = true;
         }
     };
 };
