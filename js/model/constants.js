@@ -1,5 +1,5 @@
 var Constants = {
-  J: -0.15, // strength of exchange interaction
+  J: 0, // strength of exchange interaction
   moment: 1, // strength of spin-field interaction
 
   getJ: function () {
