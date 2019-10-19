@@ -115,6 +115,13 @@ var Calculations = {
   },
 
   atomShouldFlip: function (deltaEnergy, P) {
+    // // FUDGE: smaller particles should decay faster than larger ones
+    if (Config.bFudge && !Variables.getMagnetStatus() &&
+      (Variables.getAtomCount() / Config.iSizeRangeMax) * Config.iFudgeFactor >= Utils.random(0, Config.iFudgeFactor + 0.1)
+    ) {
+      return false;
+    }
+
     if (deltaEnergy <= 0) {
       return true;
     }
@@ -125,6 +132,7 @@ var Calculations = {
 
 module.exports = Calculations;
 
+var Config = require("../config/user-config");
 var Constants = require("./constants");
 var Global = require("../config/global");
 var Atoms = require("../objects/atoms");

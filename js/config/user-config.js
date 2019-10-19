@@ -73,7 +73,9 @@ var UserConfig = {
   // tweaks
   iMagnetStrength: 10,
   iTemperatureModifier: 1000,
-  bShowTweaks: false
+  bShowTweaks: false,
+  bFudge: true,
+  iFudgeFactor: 2 // higher value increases remanence time for larger particles
 };
 
 module.exports = UserConfig;
