@@ -26,7 +26,7 @@ var ButtonHandlers = {
         var rnStrength = document.querySelector('#rnStrength');
 
         // determine if we're toggling on or off
-        if (Global.bMagnetOn) {
+        if (Variables.getMagnetStatus()) {
             // store the current value of the slider
             Global.iStrengthStoredVal = Variables.getStrengthValue();
             rnStrength.value = 0;
@@ -46,10 +46,10 @@ var ButtonHandlers = {
         InterfaceUpdates.rangeChange(rnStrength);
 
         // toggle the slider
-        document.querySelector('#rnStrength').disabled = Global.bMagnetOn;
+        document.querySelector('#rnStrength').disabled = Variables.getMagnetStatus();
 
         // toggle
-        Global.bMagnetOn = !Global.bMagnetOn;
+        Variables.toggleMagnetStatus();
     },
 
     // function to toggle polarity

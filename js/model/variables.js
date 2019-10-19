@@ -14,6 +14,8 @@ var Variables = {
   // stored value of the field strength slider
   StrengthValue: 0,
 
+  MagnetOn: true,
+
   Polarity: 1,
 
   reset: function () {
@@ -86,6 +88,14 @@ var Variables = {
 
   getTemperature: function () {
     return this.Temperature;
+  },
+
+  toggleMagnetStatus: function () {
+    this.MagnetOn = !this.MagnetOn;
+  },
+
+  getMagnetStatus: function () {
+    return this.MagnetOn;
   },
 
   getPolarity: function () {
