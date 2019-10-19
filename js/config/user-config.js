@@ -2,7 +2,7 @@ var UserConfig = {
   // customizeable parameters
   iArrowSize: 4, // size of the arrow arrows
   iArrowWidth: 8, // width of the arrow
-  iDrawInterval: 255, // time between redraws
+  iDrawInterval: 255, // ms between redraws
   iGraphThickness: 10, // height of the activity bar graph
   iGraphWidth: 80, // width of graph, % of canvas width
   iAtomRadius: 8, // pixels
