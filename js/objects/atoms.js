@@ -15,7 +15,7 @@ var Atoms = {
         this.clear();
 
         // use the square root of the total atoms to determine the dimensions
-        var iSideLength = Math.ceil(Math.sqrt(Global.iAtomCount));
+        var iSideLength = Math.ceil(Math.sqrt(Variables.getAtomCount()));
 
         // set the particle dimensions
         Global.iAtomsWidth = iSideLength;

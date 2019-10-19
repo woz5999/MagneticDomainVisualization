@@ -2,6 +2,9 @@ var Variables = {
   // external magnetic force
   H: 0,
 
+  // atom count
+  AtomCount: 0,
+
   // total magnetization
   Magnetization: 0,
 
@@ -50,6 +53,14 @@ var Variables = {
 
   getH: function () {
     return this.H;
+  },
+
+  setAtomCount: function (v) {
+    this.AtomCount = v;
+  },
+
+  getAtomCount: function () {
+    return this.AtomCount;
   },
 
   setMagnetization: function (v) {

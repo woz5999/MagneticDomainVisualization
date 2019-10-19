@@ -66,7 +66,7 @@ var Calculations = {
 
   normalizeMagnetization: function (magnetization) {
     return -(magnetization /
-      (Global.iAtomsWidth * Global.iAtomsHeight)) * 100;
+      Variables.getAtomCount()) * 100;
   },
 
   // function to attempt to flip the atom
@@ -82,7 +82,7 @@ var Calculations = {
     systemSpinWithFlip = systemSpinCurrent + adjacentSpinDelta;
 
     // calculate the potential change in magnetization
-    var iMagnetizationWithFlip = Variables.getMagnetization() + (p.iSpin);
+    var iMagnetizationWithFlip = Variables.getMagnetization() + p.iSpin;
 
     energy1 = this.energy(systemSpinCurrent, Variables.getMagnetization());
     energy2 = this.energy(systemSpinWithFlip, iMagnetizationWithFlip);
@@ -106,7 +106,8 @@ var Calculations = {
   // determine if the possible change in energy is zero or less or if a random number is
   // less than the exponentional function of negative change in E divided by the temp
   flipProbability: function (deltaEnergy) {
-    return Math.exp(-deltaEnergy / this.weightedTemperature());
+    P = Math.exp(-deltaEnergy / this.weightedTemperature());
+    return P;
   },
 
   weightedTemperature: function () {

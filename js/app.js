@@ -50,18 +50,6 @@ function init() {
         // attach key press event to keyboard buttons
         document.onkeypress = Keyboard.keyPress.bind(Keyboard);
 
-        if (!Config.iSizeRangeMax) {
-            // get max number of atoms
-            // (canvas height /(atom width + spacing))^2)
-            Global.iSizeRangeMax = Math.floor(Math.pow(Global.iCanvasHeight /
-                ((Config.iAtomRadius * 2) + Config.iAtomSpacing), 2));
-
-            // round atoms to nearest 100
-            Global.iSizeRangeMax = Math.round(Global.iSizeRangeMax / 100) * 100;
-        } else {
-            Global.iSizeRangeMax = Config.iSizeRangeMax;
-        }
-
         // set initial parameters
         CanvasSetup.setParameters(Config.iTemperatureRangeMin,
             rnTemp, 'rnTempMin');
@@ -73,7 +61,7 @@ function init() {
             rnStrength, 'rnStrengthMax');
         CanvasSetup.setParameters(Config.iSizeRangeMin,
             rnSize, 'rnSizeMin');
-        CanvasSetup.setParameters(Global.iSizeRangeMax,
+        CanvasSetup.setParameters(Config.iSizeRangeMax,
             rnSize, 'rnSizeMax');
 
         // set the default range values
