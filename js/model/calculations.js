@@ -69,19 +69,15 @@ var Calculations = {
       (Global.iAtomsWidth * Global.iAtomsHeight)) * 100;
   },
 
-  // function to attempt to flip a random atom
-  flip: function () {
-    // pick a random atom
-    r = Atoms.getRandomAtom();
-    p = r[0]; // set the particle object from the result
-
+  // function to attempt to flip the atom
+  flip: function (p, x, y) {
     // get the current system's total spin alignment sum
     systemSpinCurrent = Variables.getAdjacantSpinCount();
 
     // temporarily flip the atom and re-calculate the new total aligned spin
     p.iSpin *= -1;
 
-    adjacentSpinDelta = this.atomAdjacentSpinInteraction(r[1], r[2]);
+    adjacentSpinDelta = this.atomAdjacentSpinInteraction(x, y);
 
     systemSpinWithFlip = systemSpinCurrent + adjacentSpinDelta;
 

@@ -3,7 +3,8 @@ var Atoms = {
     refresh: function () {
         for (i = 0; i < this.arrAtoms.length; i++) {
             // attempt to flip a random atom
-            Calculations.flip();
+            r = Atoms.getRandomAtom();
+            Calculations.flip(r[0], r[1], r[2]);
 
             this.arrAtoms[i].draw();
         }
