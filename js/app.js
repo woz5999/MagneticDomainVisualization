@@ -89,6 +89,5 @@ var Draw = require('./canvas/draw');
 var Global = require('./config/global');
 var InterfaceUpdates = require('./interface/interface-updates');
 var Keyboard = require('./interface/keyboard-shortcuts');
-var Variables = require('./model/variables');
 
 init();
