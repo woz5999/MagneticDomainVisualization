@@ -73,7 +73,7 @@ var UserConfig = {
   // tweaks
   iMagnetStrength: 10,
   iTemperatureModifier: 1000,
-  bShowTweaks: true
+  bShowTweaks: false
 };
 
 module.exports = UserConfig;
