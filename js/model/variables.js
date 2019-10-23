@@ -94,7 +94,10 @@ var Variables = {
     this.MagnetOn = !this.MagnetOn;
   },
 
-  getMagnetStatus: function () {
+  getMagnetOn: function () {
+    if (this.getStrengthValue() == 0) {
+      return false;
+    }
     return this.MagnetOn;
   },
 
