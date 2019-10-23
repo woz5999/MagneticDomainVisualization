@@ -1,23 +1,10 @@
 function init() {
     // determine whether or not to show the tweak controls
     if (Config.bShowTweaks) {
-        J = document.querySelector('#J');
-        H = document.querySelector('#H');
-        T = document.querySelector('#T');
-
-        // attach change events to the sliders
-        J.onchange = InterfaceUpdates.rangeChange;
-        H.onchange = InterfaceUpdates.rangeChange;
-        T.onchange = InterfaceUpdates.rangeChange;
-
-        J.value = Constants.J;
-        H.value = Config.iMagnetStrength;
-        T.value = Config.iTemperatureModifier;
-
-        // force the initial label display
-        InterfaceUpdates.rangeChange(J);
-        InterfaceUpdates.rangeChange(H);
-        InterfaceUpdates.rangeChange(T);
+        setTweak('J', Constants.J);
+        setTweak('H', Config.iMagnetStrength);
+        setTweak('T', Config.iTemperatureModifier);
+        setTweak('D', Config.iDistanceModifier);
 
         document.querySelector('#tweaks').classList.remove('hide');
     }
@@ -79,6 +66,18 @@ function init() {
 
         window.onresize = CanvasSetup.setupCanvas;
     }
+}
+
+function setTweak(t, def) {
+    T = document.querySelector('#' + t.toUpperCase());
+
+    // attach change events to the sliders
+    T.onchange = InterfaceUpdates.rangeChange;
+
+    T.value = def;
+
+    // force the initial label display
+    InterfaceUpdates.rangeChange(T);
 }
 
 var ButtonHandlers = require('./interface/button-handlers');
