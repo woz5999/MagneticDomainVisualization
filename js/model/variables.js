@@ -113,7 +113,7 @@ var Variables = {
     return document.querySelector('#H').value;
   },
 
-  getTemperaturehModifier: function () {
+  getTemperatureModifier: function () {
     if (!Config.bShowTweaks) {
       return Config.iTemperatureModifier;
     }

@@ -111,7 +111,7 @@ var Calculations = {
   },
 
   weightedTemperature: function () {
-    return Variables.getTemperature() / Variables.getTemperaturehModifier();
+    return Variables.getTemperature() / Variables.getTemperatureModifier();
   },
 
   atomShouldFlip: function (deltaEnergy, P) {
