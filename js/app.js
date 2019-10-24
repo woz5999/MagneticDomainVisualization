@@ -4,7 +4,7 @@ function init() {
         setTweak('J', Constants.J);
         setTweak('H', Config.iMagnetStrength);
         setTweak('T', Config.iTemperatureModifier);
-        setTweak('D', Config.iDistanceModifier);
+        setTweak('R', Config.iRemanenceModifier);
 
         document.querySelector('#tweaks').classList.remove('hide');
     }

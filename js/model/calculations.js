@@ -115,10 +115,8 @@ var Calculations = {
   },
 
   atomShouldFlip: function (deltaEnergy, P) {
-    // // FUDGE: smaller particles should decay faster than larger ones
-    if (Config.bFudge && !Variables.getMagnetStatus() &&
-      (Variables.getAtomCount() / Config.iSizeRangeMax) * Config.iFudgeFactor >= Utils.random(0, Config.iFudgeFactor + 0.1)
-    ) {
+    // FUDGE smaller particles should decay faster than larger ones
+    if (!Variables.getMagnetOn() && Utils.random(0.0, 1.0) < 0.97 * (Variables.getAtomCount() / Config.iSizeRangeMax)) {
       return false;
     }
 

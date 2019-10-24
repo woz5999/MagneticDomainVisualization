@@ -146,10 +146,24 @@
 					</div>
 				</div>
 				<div class="row slider-row">
-					<input type="range" id="T" min="0" max="5000" step="100">
+					<input type="range" id="T" min="1" max="5000" step="100">
 					<span> <br/>
 						<b>Temperature Modifier</b><br/>
 						This value is used to scale the effect of the Temperature on the model and roughly manifests itself as the Curie point of the material.
+					</span>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="row text-center">
+					<div class="col-sm-12 slider-value">
+						<span id="DValue"></span>
+					</div>
+				</div>
+				<div class="row slider-row">
+					<input type="range" id="R" min="0" max="1" step=".01">
+					<span> <br/>
+						<b>Remanence Modifier</b><br/>
+						This value is used to control the artificial remanence. A higher value will result in greater remanence.
 					</span>
 				</div>
 			</div>

@@ -71,11 +71,10 @@ var UserConfig = {
   bFieldLines: true,
 
   // tweaks
-  iMagnetStrength: 10,
-  iTemperatureModifier: 1000,
-  bShowTweaks: false,
-  bFudge: true,
-  iFudgeFactor: 2 // higher value increases remanence time for larger particles
+  iMagnetStrength: 10, // multipler for the raw applied field strength slider value
+  iTemperatureModifier: 1000, // divisor for the raw applied field strength slider value
+  iRemanenceModifier: 0.97, // controls the remanence threshold
+  bShowTweaks: true, // whether or not to show the tweaks toolbar
 };
 
 module.exports = UserConfig;
