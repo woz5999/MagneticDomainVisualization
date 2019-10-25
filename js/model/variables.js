@@ -86,13 +86,11 @@ var Variables = {
   },
 
   setStrengthValue: function (v) {
-    // if we're turning the magnet back on via slider, update the status
-    if (this.StrengthValue == 0 && v > 0) {
+    if (v > 0) {
       this.MagnetOn = true;
     }
 
     this.previousStrengthValue = this.StrengthValue;
-
     this.StrengthValue = v;
     this.updateExternalMagneticFieldStrength();
   },
