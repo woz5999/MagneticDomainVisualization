@@ -71,7 +71,7 @@ var Config = {
   bFieldLines: true,
 
   // tweaks
-  iMagnetStrength: 10, // multipler for the raw applied field strength slider value
+  iMagnetStrength: 5, // multipler for the raw applied field strength slider value
   iTemperatureModifier: 1000, // divisor for the raw applied field strength slider value
   iRemanenceModifier: 0.97, // controls the remanence threshold
   bShowTweaks: false, // whether or not to show the tweaks toolbar
