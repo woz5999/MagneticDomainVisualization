@@ -71,6 +71,11 @@ var Calculations = {
 
   // function to attempt to flip the atom
   flip: function (p, x, y) {
+    // FUDGE smaller particles should decay faster than larger ones
+    if (Variables.getStrengthValue() < Variables.getPreviousStrengthValue() && Utils.random(0.0, 1.0) < 0.97 * (Variables.getAtomCount() / Config.iSizeRangeMax)) {
+      return;
+    }
+
     // get the current system's total spin alignment sum
     systemSpinCurrent = Variables.getAdjacantSpinCount();
 
@@ -115,11 +120,6 @@ var Calculations = {
   },
 
   atomShouldFlip: function (deltaEnergy, P) {
-    // FUDGE smaller particles should decay faster than larger ones
-    if (!Variables.getMagnetOn() && Utils.random(0.0, 1.0) < 0.97 * (Variables.getAtomCount() / Config.iSizeRangeMax)) {
-      return false;
-    }
-
     if (deltaEnergy <= 0) {
       return true;
     }

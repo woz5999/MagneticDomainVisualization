@@ -27,8 +27,6 @@ var ButtonHandlers = {
 
         // determine if we're toggling on or off
         if (Variables.getMagnetOn()) {
-            // store the current value of the slider
-            Global.iStrengthStoredVal = Variables.getStrengthValue();
             rnStrength.value = 0;
 
             // if the field is off, disable polarity button
@@ -36,7 +34,7 @@ var ButtonHandlers = {
 
         } else {
             // restore the value of the slider
-            rnStrength.value = Global.iStrengthStoredVal;
+            rnStrength.value = Variables.getPreviousStrengthValue();
 
             // if the field is off, disable polarity button
             ButtonHandlers.disableButton(document.querySelector('#btnPolarity'), false);
