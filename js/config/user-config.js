@@ -74,7 +74,7 @@ var UserConfig = {
   iMagnetStrength: 10, // multipler for the raw applied field strength slider value
   iTemperatureModifier: 1000, // divisor for the raw applied field strength slider value
   iRemanenceModifier: 0.97, // controls the remanence threshold
-  bShowTweaks: true, // whether or not to show the tweaks toolbar
+  bShowTweaks: false, // whether or not to show the tweaks toolbar
 };
 
 module.exports = UserConfig;
