@@ -1,4 +1,6 @@
 var Variables = {
+
+
   // external magnetic force
   H: 0,
 
@@ -14,9 +16,19 @@ var Variables = {
   // stored value of the field strength slider
   StrengthValue: 0,
 
+  Enabled: true,
+
   MagnetOn: true,
 
   Polarity: 1,
+
+  visualizationEnabled: function () {
+    return this.Enabled;
+  },
+
+  toggleVisualizationEnabled: function () {
+    this.Enabled = !this.Enabled;
+  },
 
   reset: function () {
     this.Magnetization = 0;
@@ -142,4 +154,4 @@ var Variables = {
 module.exports = Variables;
 
 var Calculations = require("./calculations");
-var Config = require("../config/user-config");
+var Config = require("../config/config");

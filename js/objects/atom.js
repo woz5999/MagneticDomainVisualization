@@ -40,6 +40,6 @@ Atom = function (x, y, iSpin) {
 module.exports = Atom;
 
 var Arrow = require("./arrow");
-var Config = require("../config/user-config");
+var Config = require("../config/config");
 var DrawFunctions = require("../canvas/draw-functions");
 var Utils = require("../utils");

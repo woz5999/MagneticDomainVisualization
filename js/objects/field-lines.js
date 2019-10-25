@@ -4,13 +4,13 @@ var FieldLines = {
         // make sure the field strength is not 0
         if (Variables.getStrengthValue() !== 0) {
             // set the line count
-            var iLineCount = (Global.iCanvasHeight / 20) * (Variables.getStrengthValue() / 100);
+            var iLineCount = (Canvas.getHeight() / 20) * (Variables.getStrengthValue() / 100);
 
             // determine how far to space the lines
-            var iSpacing = Math.floor(Global.iCanvasHeight / iLineCount);
+            var iSpacing = Math.floor(Canvas.getHeight() / iLineCount);
 
             // set the line color
-            Global.ctxContext.strokeStyle = Config.iFieldLineColor;
+            Canvas.getContext().strokeStyle = Config.iFieldLineColor;
 
             // calculate arrow dimensions
             var iLength;
@@ -32,7 +32,7 @@ var FieldLines = {
             // determine if the center line should be drawn
             if (iLineCount != 0) {
                 // draw the center line
-                this.drawFieldLine(Global.iParticleCenterY, iHeight, iLength);
+                this.drawFieldLine(Canvas.getCenterY(), iHeight, iLength);
             }
 
             // iterate field lines for the strength, drawing from the center out
@@ -40,8 +40,8 @@ var FieldLines = {
                 var iCurrentSpacing = iSpacing * i;
 
                 // calculate the starting location for the upper and  lower lines
-                var iLowerLocation = Global.iParticleCenterY + iCurrentSpacing;
-                var iUpperLocation = Global.iParticleCenterY - iCurrentSpacing;
+                var iLowerLocation = Canvas.getCenterY() + iCurrentSpacing;
+                var iUpperLocation = Canvas.getCenterY() - iCurrentSpacing;
 
                 // draw lines
                 this.drawFieldLine(iUpperLocation, iHeight, iLength);
@@ -52,7 +52,7 @@ var FieldLines = {
 
     // function to draw a field line
     drawFieldLine: function (iLocation, iHeight, iLength) {
-        DrawFunctions.drawLine(0, iLocation, Global.iCanvasWidth, iLocation);
+        DrawFunctions.drawLine(0, iLocation, Canvas.getWidth(), iLocation);
 
         // determine polarity
         if (Math.sign(Variables.getPolarity()) > 0) {
@@ -67,11 +67,11 @@ var FieldLines = {
             parseInt(pos) + iHeight);
         DrawFunctions.drawLine(10, pos, iLength + 10,
             parseInt(pos) - iHeight);
-        DrawFunctions.drawLine(Global.iCanvasWidth - iLength - 10,
-            pos, Global.iCanvasWidth - 10,
+        DrawFunctions.drawLine(Canvas.getWidth() - iLength - 10,
+            pos, Canvas.getWidth() - 10,
             parseInt(pos) + iHeight);
-        DrawFunctions.drawLine(Global.iCanvasWidth - iLength - 10,
-            pos, Global.iCanvasWidth - 10,
+        DrawFunctions.drawLine(Canvas.getWidth() - iLength - 10,
+            pos, Canvas.getWidth() - 10,
             parseInt(pos) - iHeight);
     },
 
@@ -80,18 +80,18 @@ var FieldLines = {
             parseInt(pos) + iHeight);
         DrawFunctions.drawLine(iLength + 10, pos, 10,
             parseInt(pos) - iHeight);
-        DrawFunctions.drawLine(Global.iCanvasWidth - 10, pos,
-            Global.iCanvasWidth - iLength - 10,
+        DrawFunctions.drawLine(Canvas.getWidth() - 10, pos,
+            Canvas.getWidth() - iLength - 10,
             parseInt(pos) + iHeight);
-        DrawFunctions.drawLine(Global.iCanvasWidth - 10, pos,
-            Global.iCanvasWidth - iLength - 10,
+        DrawFunctions.drawLine(Canvas.getWidth() - 10, pos,
+            Canvas.getWidth() - iLength - 10,
             parseInt(pos) - iHeight);
     }
 };
 
 module.exports = FieldLines;
 
-var Config = require("../config/user-config");
+var Canvas = require("../canvas/canvas");
+var Config = require("../config/config");
 var DrawFunctions = require("../canvas/draw-functions");
-var Global = require("../config/global");
 var Variables = require("../model/variables");

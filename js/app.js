@@ -25,10 +25,10 @@ function init() {
     btnMagnet.onclick = ButtonHandlers.magnetClick;
 
     // construct up the canvas
-    CanvasSetup.setupCanvas();
+    Canvas.setup();
 
     // make sure there is context
-    if (Global.ctxContext) {
+    if (Canvas.getContext()) {
         // attach change events to the sliders
         rnTemp.onchange = InterfaceUpdates.rangeChange;
         rnSize.onchange = InterfaceUpdates.rangeChange;
@@ -36,20 +36,6 @@ function init() {
 
         // attach key press event to keyboard buttons
         document.onkeypress = Keyboard.keyPress.bind(Keyboard);
-
-        // set initial parameters
-        CanvasSetup.setParameters(Config.iTemperatureRangeMin,
-            rnTemp, 'rnTempMin');
-        CanvasSetup.setParameters(Config.iTemperatureRangeMax,
-            rnTemp, 'rnTempMax');
-        CanvasSetup.setParameters(Config.iStrengthRangeMin,
-            rnStrength, 'rnStrengthMin');
-        CanvasSetup.setParameters(Config.iStrengthRangeMax,
-            rnStrength, 'rnStrengthMax');
-        CanvasSetup.setParameters(Config.iSizeRangeMin,
-            rnSize, 'rnSizeMin');
-        CanvasSetup.setParameters(Config.iSizeRangeMax,
-            rnSize, 'rnSizeMax');
 
         // set the default range values
         rnTemp.value = Config.iTemperatureStart;
@@ -64,7 +50,7 @@ function init() {
         // set drawing update interval
         setInterval(Draw, Config.iDrawInterval);
 
-        window.onresize = CanvasSetup.setupCanvas;
+        window.onresize = Canvas.setup;
     }
 }
 
@@ -81,11 +67,10 @@ function setTweak(t, def) {
 }
 
 var ButtonHandlers = require('./interface/button-handlers');
-var CanvasSetup = require('./canvas/canvas-setup');
+var Canvas = require('./canvas/canvas');
 var Constants = require('./model/constants');
-var Config = require('./config/user-config');
+var Config = require('./config/config');
 var Draw = require('./canvas/draw');
-var Global = require('./config/global');
 var InterfaceUpdates = require('./interface/interface-updates');
 var Keyboard = require('./interface/keyboard-shortcuts');
 

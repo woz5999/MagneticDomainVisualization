@@ -1,4 +1,4 @@
-var UserConfig = {
+var Config = {
   // customizeable parameters
   iArrowSize: 4, // size of the arrow arrows
   iArrowWidth: 8, // width of the arrow
@@ -77,4 +77,4 @@ var UserConfig = {
   bShowTweaks: false, // whether or not to show the tweaks toolbar
 };
 
-module.exports = UserConfig;
+module.exports = Config;

@@ -19,9 +19,9 @@ var Calculations = {
     p = Atoms.getAtoms();
 
     //iterate longways through the material
-    for (i = 0; i < Global.iAtomsWidth; i++) {
+    for (i = 0; i < Atoms.getWidth(); i++) {
       //iterate widthwise
-      for (j = 0; j < Global.iAtomsHeight; j++) {
+      for (j = 0; j < Atoms.getHeight(); j++) {
         sum += this.atomAdjacentSpinInteraction(i, j);
       }
     }
@@ -71,7 +71,7 @@ var Calculations = {
 
   // function to attempt to flip the atom
   flip: function (p, x, y) {
-    // FUDGE smaller particles should decay faster than larger ones
+    // NOTE FUDGE: smaller particles should decay faster than larger ones
     if (Variables.getStrengthValue() < Variables.getPreviousStrengthValue() && Utils.random(0.0, 1.0) < 0.97 * (Variables.getAtomCount() / Config.iSizeRangeMax)) {
       return;
     }
@@ -130,9 +130,9 @@ var Calculations = {
 
 module.exports = Calculations;
 
-var Config = require("../config/user-config");
+var Atoms = require("../objects/atoms");
+var Config = require("../config/config");
 var Constants = require("./constants");
-var Global = require("../config/global");
 var Atoms = require("../objects/atoms");
 var Utils = require("../utils");
 var Variables = require("./variables");

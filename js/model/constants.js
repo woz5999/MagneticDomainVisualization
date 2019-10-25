@@ -16,5 +16,5 @@ var Constants = {
 
 module.exports = Constants;
 
-var Config = require('../config/user-config');
+var Config = require('../config/config');
 var Variables = require('../model/variables');

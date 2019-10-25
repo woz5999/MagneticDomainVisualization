@@ -61,5 +61,5 @@ module.exports = InterfaceUpdates;
 
 var Atoms = require("../objects/atoms");
 var ButtonHandlers = require("./button-handlers");
-var Config = require("../config/user-config");
+var Config = require("../config/config");
 var Variables = require("../model/variables");

@@ -2,14 +2,14 @@ var ButtonHandlers = {
     // function to play or pause the visualization
     pauseClick: function () {
         // set elements
-        ButtonHandlers.disableButton(document.querySelector('#rnSize'), Global.bVisualizationEnabled);
-        ButtonHandlers.disableButton(document.querySelector('#rnStrength'), Global.bVisualizationEnabled);
-        ButtonHandlers.disableButton(document.querySelector('#rnTemp'), Global.bVisualizationEnabled);
-        ButtonHandlers.disableButton(document.querySelector('#btnMagnet'), Global.bVisualizationEnabled);
-        ButtonHandlers.disableButton(document.querySelector('#btnPolarity'), Global.bVisualizationEnabled);
+        ButtonHandlers.disableButton(document.querySelector('#rnSize'), Variables.visualizationEnabled());
+        ButtonHandlers.disableButton(document.querySelector('#rnStrength'), Variables.visualizationEnabled());
+        ButtonHandlers.disableButton(document.querySelector('#rnTemp'), Variables.visualizationEnabled());
+        ButtonHandlers.disableButton(document.querySelector('#btnMagnet'), Variables.visualizationEnabled());
+        ButtonHandlers.disableButton(document.querySelector('#btnPolarity'), Variables.visualizationEnabled());
 
         // set the butotn text
-        if (Global.bVisualizationEnabled) {
+        if (Variables.visualizationEnabled()) {
             document.querySelector('#btnPause').innerHTML = 'Resume';
             document.querySelector('#btnPause').title = 'Resume the visualization';
         } else {
@@ -18,7 +18,7 @@ var ButtonHandlers = {
         }
 
         // toggle
-        Global.bVisualizationEnabled = !Global.bVisualizationEnabled;
+        Variables.toggleVisualizationEnabled();
     },
 
     // function to toggle the magnet
@@ -68,6 +68,5 @@ var ButtonHandlers = {
 
 module.exports = ButtonHandlers;
 
-var Global = require("../config/global");
 var InterfaceUpdates = require("./interface-updates");
 var Variables = require("../model/variables");
