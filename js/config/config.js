@@ -1,8 +1,8 @@
-var UserConfig = {
+var Config = {
   // customizeable parameters
   iArrowSize: 4, // size of the arrow arrows
   iArrowWidth: 8, // width of the arrow
-  iDrawInterval: 255, // time between redraws
+  iDrawInterval: 255, // ms between redraws
   iGraphThickness: 10, // height of the activity bar graph
   iGraphWidth: 80, // width of graph, % of canvas width
   iAtomRadius: 8, // pixels
@@ -71,9 +71,10 @@ var UserConfig = {
   bFieldLines: true,
 
   // tweaks
-  iMagnetStrength: 10,
-  iTemperatureModifier: 1000,
-  bShowTweaks: true
+  iMagnetStrength: 5, // multipler for the raw applied field strength slider value
+  iTemperatureModifier: 1000, // divisor for the raw applied field strength slider value
+  iRemanenceModifier: 0.97, // controls the remanence threshold
+  bShowTweaks: false, // whether or not to show the tweaks toolbar
 };
 
-module.exports = UserConfig;
+module.exports = Config;

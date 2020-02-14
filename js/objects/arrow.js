@@ -8,16 +8,16 @@ var Arrow = {
         // function to draw the arrow
         this.draw = function () {
             // set the line parameters
-            Global.ctxContext.lineWidth = Config.iarrowWidth;
-            Global.ctxContext.lineJoin = 'miter';
+            Canvas.getContext().lineWidth = Config.iarrowWidth;
+            Canvas.getContext().lineJoin = 'miter';
             iLengthLong *= iSpin;
             iLengthShort *= iSpin;
 
             // set arrow color
             if (Variables.getPolarity() == iSpin) {
-                Global.ctxContext.strokeStyle = Config.iArrowColorNorth;
+                Canvas.getContext().strokeStyle = Config.iArrowColorNorth;
             } else {
-                Global.ctxContext.strokeStyle = Config.iArrowColorSouth;
+                Canvas.getContext().strokeStyle = Config.iArrowColorSouth;
             }
 
             this.drawArrow(x, y, iLengthLong, iLengthShort, Config.iArrowSize);
@@ -30,21 +30,21 @@ var Arrow = {
             var iXMLong = iX - iLong;
 
             // draw the arrow
-            Global.ctxContext.beginPath();
-            Global.ctxContext.moveTo(iX, iY);
-            Global.ctxContext.lineTo(iX + iLong, iY);
-            Global.ctxContext.lineTo(iXMLong, iY);
-            Global.ctxContext.lineTo(iXMShort, iY + iAtomCount);
-            Global.ctxContext.moveTo(iXMLong, iY);
-            Global.ctxContext.lineTo(iXMShort, iY - iAtomCount);
-            Global.ctxContext.closePath();
-            Global.ctxContext.stroke();
+            Canvas.getContext().beginPath();
+            Canvas.getContext().moveTo(iX, iY);
+            Canvas.getContext().lineTo(iX + iLong, iY);
+            Canvas.getContext().lineTo(iXMLong, iY);
+            Canvas.getContext().lineTo(iXMShort, iY + iAtomCount);
+            Canvas.getContext().moveTo(iXMLong, iY);
+            Canvas.getContext().lineTo(iXMShort, iY - iAtomCount);
+            Canvas.getContext().closePath();
+            Canvas.getContext().stroke();
         };
     }, // end
 };
 
 module.exports = Arrow;
 
-var Config = require("../config/user-config");
-var Global = require("../config/global");
+var Canvas = require("../canvas/canvas");
+var Config = require("../config/config");
 var Variables = require("../model/variables");

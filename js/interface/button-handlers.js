@@ -2,14 +2,14 @@ var ButtonHandlers = {
     // function to play or pause the visualization
     pauseClick: function () {
         // set elements
-        ButtonHandlers.disableButton(document.querySelector('#rnSize'), Global.bVisualizationEnabled);
-        ButtonHandlers.disableButton(document.querySelector('#rnStrength'), Global.bVisualizationEnabled);
-        ButtonHandlers.disableButton(document.querySelector('#rnTemp'), Global.bVisualizationEnabled);
-        ButtonHandlers.disableButton(document.querySelector('#btnMagnet'), Global.bVisualizationEnabled);
-        ButtonHandlers.disableButton(document.querySelector('#btnPolarity'), Global.bVisualizationEnabled);
+        ButtonHandlers.disableButton(document.querySelector('#rnSize'), Variables.visualizationEnabled());
+        ButtonHandlers.disableButton(document.querySelector('#rnStrength'), Variables.visualizationEnabled());
+        ButtonHandlers.disableButton(document.querySelector('#rnTemp'), Variables.visualizationEnabled());
+        ButtonHandlers.disableButton(document.querySelector('#btnMagnet'), Variables.visualizationEnabled());
+        ButtonHandlers.disableButton(document.querySelector('#btnPolarity'), Variables.visualizationEnabled());
 
         // set the butotn text
-        if (Global.bVisualizationEnabled) {
+        if (Variables.visualizationEnabled()) {
             document.querySelector('#btnPause').innerHTML = 'Resume';
             document.querySelector('#btnPause').title = 'Resume the visualization';
         } else {
@@ -18,7 +18,7 @@ var ButtonHandlers = {
         }
 
         // toggle
-        Global.bVisualizationEnabled = !Global.bVisualizationEnabled;
+        Variables.toggleVisualizationEnabled();
     },
 
     // function to toggle the magnet
@@ -26,9 +26,7 @@ var ButtonHandlers = {
         var rnStrength = document.querySelector('#rnStrength');
 
         // determine if we're toggling on or off
-        if (Global.bMagnetOn) {
-            // store the current value of the slider
-            Global.iStrengthStoredVal = Variables.getStrengthValue();
+        if (Variables.getMagnetOn()) {
             rnStrength.value = 0;
 
             // if the field is off, disable polarity button
@@ -36,7 +34,7 @@ var ButtonHandlers = {
 
         } else {
             // restore the value of the slider
-            rnStrength.value = Global.iStrengthStoredVal;
+            rnStrength.value = Variables.getPreviousStrengthValue();
 
             // if the field is off, disable polarity button
             ButtonHandlers.disableButton(document.querySelector('#btnPolarity'), false);
@@ -46,10 +44,10 @@ var ButtonHandlers = {
         InterfaceUpdates.rangeChange(rnStrength);
 
         // toggle the slider
-        document.querySelector('#rnStrength').disabled = Global.bMagnetOn;
+        document.querySelector('#rnStrength').disabled = Variables.getMagnetOn();
 
         // toggle
-        Global.bMagnetOn = !Global.bMagnetOn;
+        Variables.toggleMagnetStatus();
     },
 
     // function to toggle polarity
@@ -70,6 +68,5 @@ var ButtonHandlers = {
 
 module.exports = ButtonHandlers;
 
-var Global = require("../config/global");
 var InterfaceUpdates = require("./interface-updates");
 var Variables = require("../model/variables");

@@ -1,9 +1,37 @@
 var Atoms = {
+    height: 0,
+    width: 0,
+    atomDiameter: 0,
+    atomWidth: 0,
+
+    getWidth: function () {
+        return this.width;
+    },
+
+    getHeight: function () {
+        return this.height;
+    },
+
+    getAtomDiameter: function () {
+        if (!this.atomDiameter) {
+            this.atomDiameter = Config.iAtomRadius * 2;
+        }
+        return this.atomDiameter;
+    },
+
+    getAtomWidth: function () {
+        if (!this.atomWidth) {
+            this.atomWidth = this.getAtomDiameter() + Config.iAtomSpacing;
+        }
+        return this.atomWidth;
+    },
+
     // function to flip and draw all the atoms
     refresh: function () {
         for (i = 0; i < this.arrAtoms.length; i++) {
             // attempt to flip a random atom
-            Calculations.flip();
+            r = Atoms.getRandomAtom();
+            Calculations.flip(r[0], r[1], r[2]);
 
             this.arrAtoms[i].draw();
         }
@@ -14,25 +42,25 @@ var Atoms = {
         this.clear();
 
         // use the square root of the total atoms to determine the dimensions
-        var iSideLength = Math.ceil(Math.sqrt(Global.iAtomCount));
+        var iSideLength = Math.ceil(Math.sqrt(Variables.getAtomCount()));
 
         // set the particle dimensions
-        Global.iAtomsWidth = iSideLength;
-        Global.iAtomsHeight = iSideLength;
+        this.width = iSideLength;
+        this.height = iSideLength;
 
-        var iTopLeftCornerXY = iSideLength * (Global.iParticleTotalWidth / 2);
+        var iTopLeftCornerXY = iSideLength * (this.getAtomWidth() / 2);
 
         // calculate the starting corner of the first particle
-        var iStartX = Math.floor(Global.iParticleCenterX - iTopLeftCornerXY);
-        var iStartY = Math.floor(Global.iParticleCenterY - iTopLeftCornerXY);
+        var iStartX = Math.floor(Canvas.getCenterX() - iTopLeftCornerXY);
+        var iStartY = Math.floor(Canvas.getCenterY() - iTopLeftCornerXY);
 
         // iterate through atoms for the height of the main particle
-        for (var i = 0; i < Global.iAtomsHeight; i++) {
+        for (var i = 0; i < this.getHeight(); i++) {
             // set the y coordinate for this row
             var y = this.getAtomYPosition(iStartY, i);
 
             // iterate through atoms for the width of the main particle
-            for (ii = 0; ii < Global.iAtomsWidth; ii++) {
+            for (ii = 0; ii < this.getWidth(); ii++) {
                 // set the coordinate for this atom
                 var x = this.getAtomXPosition(iStartX, ii);
 
@@ -50,12 +78,12 @@ var Atoms = {
     // function to get the spin of the atom specified by it's x,y coord within the particle
     getSpecificAtom: function (i, j) {
         // sanity check x against width of material
-        if (i < 0 || i > Global.iAtomsWidth || j < 0 || j > Global.iAtomsHeight) {
+        if (i < 0 || i > this.getWidth() || j < 0 || j > this.getHeight()) {
             return null;
         }
 
         // calculate the index
-        var ii = i * Global.iAtomsWidth + j;
+        var ii = i * this.getWidth() + j;
 
         // make sure the atom is within the bounds of the array
         if (i >= this.arrAtoms.length) {
@@ -67,20 +95,20 @@ var Atoms = {
 
     // function to retrieve a random atom and return an array with [particle, i, j]
     getRandomAtom: function () {
-        var i = Math.floor(Utils.random(0.0, 1) * Global.iAtomsWidth);
-        var j = Math.floor(Utils.random(0.0, 1) * Global.iAtomsHeight);
+        var i = Math.floor(Utils.random(0.0, 1) * this.getWidth());
+        var j = Math.floor(Utils.random(0.0, 1) * this.getHeight());
 
         return [this.getSpecificAtom(i, j), i, j];
     },
 
     // function to get an atom's x coordinate based on its position in the row
     getAtomXPosition: function (firstAtomX, rowIndex) {
-        return firstAtomX + Global.iParticleDiameter + (rowIndex * Global.iParticleTotalWidth);
+        return firstAtomX + this.getAtomDiameter() + (rowIndex * this.getAtomWidth());
     },
 
     // function to get a particle's y coordinate based on its position in the column
     getAtomYPosition: function (firstAtomY, colIndex) {
-        return firstAtomY + Global.iParticleDiameter + (colIndex * Global.iParticleTotalWidth);
+        return firstAtomY + this.getAtomDiameter() + (colIndex * this.getAtomWidth());
     },
 
     // function to clear all atoms
@@ -99,8 +127,9 @@ var Atoms = {
 
 module.exports = Atoms;
 
+var Canvas = require("../canvas/canvas");
 var Calculations = require("../model/calculations");
-var Global = require("../config/global");
+var Config = require("../config/config");
 var Atom = require("./atom");
 var Utils = require("../utils");
 var Variables = require("../model/variables");

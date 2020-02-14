@@ -8,27 +8,13 @@ var InterfaceUpdates = {
         // determine which slider was changed
         switch (strName) {
             case 'rnTemp':
-                // sanity check
-                if (parseInt(iValue) < Global.iTemperatureRangeMin) {
-                    iValue = Global.iTemperatureRangeMin;
-                } else if (parseInt(iValue) > Global.iTemperatureRangeMax) {
-                    iValue = Global.iTemperatureRangeMax;
-                }
-
                 // set the energy level for the temperature
                 Variables.setTemperature(iValue);
                 break;
 
             case 'rnSize':
-                // sanity check
-                if (parseInt(iValue) < Global.iSizeMin) {
-                    iValue = Global.iSizeMin;
-                } else if (parseInt(iValue) > Global.iSizeMax) {
-                    iValue = Global.iSizeMax;
-                }
-
                 // set the new radius
-                Global.iAtomCount = iValue;
+                Variables.setAtomCount(iValue);
 
                 // reset atom array
                 Atoms.addAtoms();
@@ -75,6 +61,5 @@ module.exports = InterfaceUpdates;
 
 var Atoms = require("../objects/atoms");
 var ButtonHandlers = require("./button-handlers");
-var Global = require("../config/global");
-var Config = require("../config/user-config");
+var Config = require("../config/config");
 var Variables = require("../model/variables");

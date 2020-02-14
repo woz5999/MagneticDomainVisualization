@@ -1,23 +1,10 @@
 function init() {
     // determine whether or not to show the tweak controls
     if (Config.bShowTweaks) {
-        J = document.querySelector('#J');
-        H = document.querySelector('#H');
-        T = document.querySelector('#T');
-
-        // attach change events to the sliders
-        J.onchange = InterfaceUpdates.rangeChange;
-        H.onchange = InterfaceUpdates.rangeChange;
-        T.onchange = InterfaceUpdates.rangeChange;
-
-        J.value = Constants.J;
-        H.value = Config.iMagnetStrength;
-        T.value = Config.iTemperatureModifier;
-
-        // force the initial label display
-        InterfaceUpdates.rangeChange(J);
-        InterfaceUpdates.rangeChange(H);
-        InterfaceUpdates.rangeChange(T);
+        setTweak('J', Constants.J);
+        setTweak('H', Config.iMagnetStrength);
+        setTweak('T', Config.iTemperatureModifier);
+        setTweak('R', Config.iRemanenceModifier);
 
         document.querySelector('#tweaks').classList.remove('hide');
     }
@@ -38,10 +25,10 @@ function init() {
     btnMagnet.onclick = ButtonHandlers.magnetClick;
 
     // construct up the canvas
-    CanvasSetup.setupCanvas();
+    Canvas.setup();
 
     // make sure there is context
-    if (Global.ctxContext) {
+    if (Canvas.getContext()) {
         // attach change events to the sliders
         rnTemp.onchange = InterfaceUpdates.rangeChange;
         rnSize.onchange = InterfaceUpdates.rangeChange;
@@ -49,32 +36,6 @@ function init() {
 
         // attach key press event to keyboard buttons
         document.onkeypress = Keyboard.keyPress.bind(Keyboard);
-
-        if (!Config.iSizeRangeMax) {
-            // get max number of atoms
-            // (canvas height /(atom width + spacing))^2)
-            Global.iSizeRangeMax = Math.floor(Math.pow(Global.iCanvasHeight /
-                ((Config.iAtomRadius * 2) + Config.iAtomSpacing), 2));
-
-            // round atoms to nearest 100
-            Global.iSizeRangeMax = Math.round(Global.iSizeRangeMax / 100) * 100;
-        } else {
-            Global.iSizeRangeMax = Config.iSizeRangeMax;
-        }
-
-        // set initial parameters
-        CanvasSetup.setParameters(Config.iTemperatureRangeMin,
-            rnTemp, 'rnTempMin');
-        CanvasSetup.setParameters(Config.iTemperatureRangeMax,
-            rnTemp, 'rnTempMax');
-        CanvasSetup.setParameters(Config.iStrengthRangeMin,
-            rnStrength, 'rnStrengthMin');
-        CanvasSetup.setParameters(Config.iStrengthRangeMax,
-            rnStrength, 'rnStrengthMax');
-        CanvasSetup.setParameters(Config.iSizeRangeMin,
-            rnSize, 'rnSizeMin');
-        CanvasSetup.setParameters(Global.iSizeRangeMax,
-            rnSize, 'rnSizeMax');
 
         // set the default range values
         rnTemp.value = Config.iTemperatureStart;
@@ -89,18 +50,28 @@ function init() {
         // set drawing update interval
         setInterval(Draw, Config.iDrawInterval);
 
-        window.onresize = CanvasSetup.setupCanvas;
+        window.onresize = Canvas.setup;
     }
 }
 
+function setTweak(t, def) {
+    T = document.querySelector('#' + t.toUpperCase());
+
+    // attach change events to the sliders
+    T.onchange = InterfaceUpdates.rangeChange;
+
+    T.value = def;
+
+    // force the initial label display
+    InterfaceUpdates.rangeChange(T);
+}
+
 var ButtonHandlers = require('./interface/button-handlers');
-var CanvasSetup = require('./canvas/canvas-setup');
+var Canvas = require('./canvas/canvas');
 var Constants = require('./model/constants');
-var Config = require('./config/user-config');
+var Config = require('./config/config');
 var Draw = require('./canvas/draw');
-var Global = require('./config/global');
 var InterfaceUpdates = require('./interface/interface-updates');
 var Keyboard = require('./interface/keyboard-shortcuts');
-var Variables = require('./model/variables');
 
 init();

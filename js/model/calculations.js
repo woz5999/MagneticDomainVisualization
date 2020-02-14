@@ -19,9 +19,9 @@ var Calculations = {
     p = Atoms.getAtoms();
 
     //iterate longways through the material
-    for (i = 0; i < Global.iAtomsWidth; i++) {
+    for (i = 0; i < Atoms.getWidth(); i++) {
       //iterate widthwise
-      for (j = 0; j < Global.iAtomsHeight; j++) {
+      for (j = 0; j < Atoms.getHeight(); j++) {
         sum += this.atomAdjacentSpinInteraction(i, j);
       }
     }
@@ -66,14 +66,15 @@ var Calculations = {
 
   normalizeMagnetization: function (magnetization) {
     return -(magnetization /
-      (Global.iAtomsWidth * Global.iAtomsHeight)) * 100;
+      Variables.getAtomCount()) * 100;
   },
 
-  // function to attempt to flip a random atom
-  flip: function () {
-    // pick a random atom
-    r = Atoms.getRandomAtom();
-    p = r[0]; // set the particle object from the result
+  // function to attempt to flip the atom
+  flip: function (p, x, y) {
+    // NOTE FUDGE: smaller particles should decay faster than larger ones
+    if (Variables.getStrengthValue() < Variables.getPreviousStrengthValue() && Utils.random(0.0, 1.0) < 0.97 * (Variables.getAtomCount() / Config.iSizeRangeMax)) {
+      return;
+    }
 
     // get the current system's total spin alignment sum
     systemSpinCurrent = Variables.getAdjacantSpinCount();
@@ -81,12 +82,12 @@ var Calculations = {
     // temporarily flip the atom and re-calculate the new total aligned spin
     p.iSpin *= -1;
 
-    adjacentSpinDelta = this.atomAdjacentSpinInteraction(r[1], r[2]);
+    adjacentSpinDelta = this.atomAdjacentSpinInteraction(x, y);
 
     systemSpinWithFlip = systemSpinCurrent + adjacentSpinDelta;
 
     // calculate the potential change in magnetization
-    var iMagnetizationWithFlip = Variables.getMagnetization() + (p.iSpin);
+    var iMagnetizationWithFlip = Variables.getMagnetization() + p.iSpin;
 
     energy1 = this.energy(systemSpinCurrent, Variables.getMagnetization());
     energy2 = this.energy(systemSpinWithFlip, iMagnetizationWithFlip);
@@ -110,11 +111,12 @@ var Calculations = {
   // determine if the possible change in energy is zero or less or if a random number is
   // less than the exponentional function of negative change in E divided by the temp
   flipProbability: function (deltaEnergy) {
-    return Math.exp(-deltaEnergy / this.weightedTemperature());
+    P = Math.exp(-deltaEnergy / this.weightedTemperature());
+    return P;
   },
 
   weightedTemperature: function () {
-    return Variables.getTemperature() / Variables.getTemperaturehModifier();
+    return Variables.getTemperature() / Variables.getTemperatureModifier();
   },
 
   atomShouldFlip: function (deltaEnergy, P) {
@@ -128,8 +130,9 @@ var Calculations = {
 
 module.exports = Calculations;
 
+var Atoms = require("../objects/atoms");
+var Config = require("../config/config");
 var Constants = require("./constants");
-var Global = require("../config/global");
 var Atoms = require("../objects/atoms");
 var Utils = require("../utils");
 var Variables = require("./variables");

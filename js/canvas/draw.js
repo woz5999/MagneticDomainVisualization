@@ -2,14 +2,14 @@ var Draw = {
     // function to draw everything
     draw: function () {
         // check if the visualization is turned on
-        if (Global.bVisualizationEnabled) {
-            CanvasSetup.clearCanvas();
+        if (Variables.visualizationEnabled()) {
+            Canvas.clear();
 
             // determine if the canvas dimensions have changed
-            if (CanvasSetup.canvasSizeChanged()) {
+            if (Canvas.sizeChanged()) {
 
                 // reset canvas
-                CanvasSetup.setCanvasVariables();
+                Canvas.setVariables();
                 Atoms.addAtoms();
             }
 
@@ -34,10 +34,9 @@ var Draw = {
 
 module.exports = Draw.draw;
 
-var CanvasSetup = require("./canvas-setup");
-var Config = require("../config/user-config");
+var Canvas = require("./canvas");
+var Config = require("../config/config");
 var FieldLines = require("../objects/field-lines");
-var Global = require("../config/global");
 var Graph = require("../objects/graph");
 var Atoms = require("../objects/atoms");
 var Speedometer = require("../objects/speedometer");

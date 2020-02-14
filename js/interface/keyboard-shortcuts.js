@@ -2,7 +2,7 @@ var KeyboardShortcuts = {
     // function to grab keyboard events and perform functions based on the key
     keyPress: function (e) {
         // determine if the visualization is turned on
-        if (Global.bVisualizationEnabled) {
+        if (Variables.visualizationEnabled()) {
             // grab the event
             var eEvent = window.event ? event : e;
 
@@ -50,6 +50,6 @@ var KeyboardShortcuts = {
 
 module.exports = KeyboardShortcuts;
 
-var Config = require("../config/user-config");
-var Global = require("../config/global");
+var Config = require("../config/config");
+var Variables = require("../model/variables");
 var InterfaceUpdates = require("./interface-updates");
