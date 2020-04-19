@@ -17,7 +17,7 @@ var Config = {
   iStrengthRangeMin: 0, // minimum field strength
   iStrengthRangeMax: 100, // maximum field strength
   iStrengthStart: 50, // field strength to starts with
-  iTemperatureRangeMax: 2000, // kelvin
+  iTemperatureRangeMax: 1200, // kelvin
   iTemperatureRangeMin: 0, // kelvin
   iTemperatureStart: 290, // temperature to start at, room temp
 

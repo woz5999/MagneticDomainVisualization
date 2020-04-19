@@ -14,6 +14,14 @@ function init() {
     rnSize = document.querySelector('#rnSize');
     rnStrength = document.querySelector('#rnStrength');
 
+    // set the configured slider ranges
+    rnSize.max = Config.iSizeRangeMax;
+    rnSize.min = Config.iSizeRangeMin;
+    rnStrength.max = Config.iStrengthRangeMax;
+    rnStrength.min = Config.iStrengthRangeMin;
+    rnTemp.max = Config.iTemperatureRangeMax;
+    rnTemp.min = Config.iTemperatureRangeMin;
+
     // grab the buttons
     btnPolarity = document.querySelector('#btnPolarity');
     btnPause = document.querySelector('#btnPause');
