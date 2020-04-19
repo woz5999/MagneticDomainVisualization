@@ -111,6 +111,11 @@ var Calculations = {
   },
 
   weightedTemperature: function () {
+    // NOTE FUDGE: once we reach the curie temperature, we want to demagnetize
+    if (this.fudgeCuriePoint()) {
+      return Infinity;
+    }
+
     return Variables.getTemperature() / Variables.getTemperatureModifier();
   },
 
@@ -127,6 +132,20 @@ var Calculations = {
 
     return P > Utils.random(0.0, 1.0);
   },
+
+  fudgeCuriePoint: function () {
+    // don't fudge if disabled
+    if (!Config.bfudgeCuriePoint) {
+      return false;
+    }
+
+    // scale the curie point based on the number of atoms within configured scaling limit
+    sizeScaledCuriePoint = Config.iCurieTemp * this.getScaledAtomCount(1 - (Config.iCuriePointScalingPercent / 100), 1);
+
+    // fudge the curie point if the temp is greater than the configured value, scaled by particle size
+    return Variables.getTemperature() >= sizeScaledCuriePoint;
+  },
+
   fudgeRemanence: function (P) {
     // don't fudge if disabled or the magnet strength hasn't decreased
     if (!Config.bFudgeRemanence || !this.magnetStrenthDeceased()) {
@@ -143,6 +162,10 @@ var Calculations = {
 
   getNormalizedAtomCount: function () {
     return (Variables.getAtomCount() - Config.iSizeRangeMin) / (Config.iSizeRangeMax - Config.iSizeRangeMin);
+  },
+
+  getScaledAtomCount: function (a, b) {
+    return (b - a) * this.getNormalizedAtomCount() + a;
   },
 };
 

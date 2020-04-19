@@ -72,11 +72,16 @@ var Config = {
 
   // tweaks
   iMagnetStrength: 5, // multipler for the raw applied field strength slider value
-  iTemperatureModifier: 1000, // divisor for the raw applied field strength slider value
+  iTemperatureModifier: 500, // divisor for the raw applied field strength slider value
   bShowTweaks: false, // whether or not to show the tweaks toolbar
+
   // fudges
   bFudgeRemanence: true, // whether or not to fudge the model with exaggerated remanence
   iRemanenceModifier: 1.2, // controls the remanence threshold
+
+  bfudgeCuriePoint: true, // whether or not to fudge the model with exaggerated curie point behavior
+  iCurieTemp: 1000, // hardcoded material curie temp
+  iCuriePointScalingPercent: 10, // percent difference for curie point between max ans min particle sizes
 };
 
 module.exports = Config;
