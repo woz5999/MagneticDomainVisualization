@@ -116,8 +116,9 @@ var Calculations = {
 
   atomShouldFlip: function (deltaEnergy, P) {
     // NOTE FUDGE: smaller particles should decay faster than larger ones
-    if (Variables.getStrengthValue() < Variables.getPreviousStrengthValue() && P >= Utils.random(0.0, (1.1 - (Variables.getAtomCount() - Config.iSizeRangeMin) / (Config.iSizeRangeMax - Config.iSizeRangeMin)))) {
-      return;
+    // if we've hit the curie point though, that takes precedence over remanence
+    if (this.fudgeRemanence(P)) { // && !this.fudgeCuriePoint()
+      return false;
     }
 
     if (deltaEnergy <= 0) {
@@ -125,6 +126,23 @@ var Calculations = {
     }
 
     return P > Utils.random(0.0, 1.0);
+  },
+  fudgeRemanence: function (P) {
+    // don't fudge if disabled or the magnet strength hasn't decreased
+    if (!Config.bFudgeRemanence || !this.magnetStrenthDeceased()) {
+      return false;
+    }
+
+    // calculate the fudge probability based on the normalized particle size
+    return P >= Utils.random(0.0, Config.iRemanenceModifier - this.getNormalizedAtomCount());
+  },
+
+  magnetStrenthDeceased: function () {
+    return Variables.getPreviousStrengthValue() > Variables.getStrengthValue();
+  },
+
+  getNormalizedAtomCount: function () {
+    return (Variables.getAtomCount() - Config.iSizeRangeMin) / (Config.iSizeRangeMax - Config.iSizeRangeMin);
   },
 };
 

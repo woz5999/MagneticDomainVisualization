@@ -73,8 +73,10 @@ var Config = {
   // tweaks
   iMagnetStrength: 5, // multipler for the raw applied field strength slider value
   iTemperatureModifier: 1000, // divisor for the raw applied field strength slider value
-  iRemanenceModifier: 0.97, // controls the remanence threshold
   bShowTweaks: false, // whether or not to show the tweaks toolbar
+  // fudges
+  bFudgeRemanence: true, // whether or not to fudge the model with exaggerated remanence
+  iRemanenceModifier: 1.2, // controls the remanence threshold
 };
 
 module.exports = Config;
