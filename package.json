@@ -13,7 +13,7 @@
     "browserify": "^6.2.0",
     "envify": "^3.0.0",
     "jest-cli": "^0.4.3",
-    "node-sass": "^3.4.1",
+    "node-sass": "^4.14.1",
     "watchify": "^2.1.1"
   },
   "scripts": {
